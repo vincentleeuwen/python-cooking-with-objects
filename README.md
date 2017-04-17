@@ -1,3 +1,184 @@
+#[Cooking 101](http://s2.quickmeme.com/img/3c/3ca2955b995c2b02bf1d821a8cf7066c5689eb3e2a4ebc7a80bfdf501290669c.jpg)
+
+We will learn today to cook with objects. We will start with creating a list of all objects of a pizzeria. 
+
+Because with objects oriented programming you want your code to work like a pizzeria. 
+
+- Waiter: You talk to the waiter. He takes your order, serves the food, checks if you want anything else and eventually you can pay the bill. 
+- Kitchen: In the kitchen the food is prepared.
+- Dish: A dish is a collection of ingredients prepared in a certain order.
+- Menu: A collection of recipes with available ingredients
+- Ingredients: Part of a recipe. 
+- Stock: Amount of ingredients available
+- Storageroom: Holds the stock
+
+Lets start by setting up the project:
+
+- open your terminal
+- create a new directory 
+- go into the directory
+- create a .gitignore file with the following setup => https://github.com/github/gitignore/blob/master/Python.gitignore 
+- initialize a new git repository `git init`
+
+## [01] As a guest. I want to be greeted by the waiter when I enter the pizzeria. So that I feel like I am welcome.
+
+**Tasks:**
+
+1. create a waiter
+2. add a method to the waiter to greet a guest
+3. create a pizzeria
+4. require the waiter in the pizzeria
+5. make a instance of the waiter in the pizzeria
+6. call the greeting method
+7. test if it all works
+8. save your progress
+
+### 1. Create a waiter
+
+- Create a file `waiter.py`
+- Create a class in this new file. We create a class like: 
+
+```python
+class Waiter(object):
+```
+
+### 2. Add a method to the Waiter to greet a guest
+
+- add a method `greet_guest`
+- the method should print a greeting
+
+```python
+class Waiter(object):
+
+    def greet_guest(self):
+        print("Good day. Welcome to our lovely little restaurant.")
+```
+
+### 3. Create a pizzeria
+
+- create a file `pizzeria.py`
+
+### 4. Require the waiter in the pizzeria
+
+- at the top of `pizzeria.py` add `from waiter import Waiter` to include the Waiter class.
+
+### 5. Make a instance of the waiter in the pizzeria
+
+A instance is when we create a object from a class. You can create a object by calling the constructor method, `Waiter()`, and by default it takes no arguments. 
+
+- Create a new instance of `Waiter` and assign it to a variable `w = Waiter()`
+
+### 6. Call the greeting method
+
+- Call a method on a object by placing it after a dot. Like `object.method()`. So to call the `greet_guest` method on the object stored in `w` you can call `w.greet_guest()`
+
+### 7. Test if it all works
+
+- Open the terminal
+- Run the pizzeria class with python `python pizzeria.py`
+- Should display: `"Good day. Welcome to our lovely little restaurant"`
+
+### 8. Save your progress
+
+- Open the terminal
+- Add all the files in your project to git `git add .`
+- Commit the files to your local git `git commit -m 'greetings'`
+
+## [02] As a guest. I would like the waiter to help me. So that I can have a bite to eat
+
+**Tasks:**
+
+1. Create a method for the waiter to serve_guests.
+2. The serve_guests method should print a list of options for the guests
+3. A guest should be able to choose from the options by their number.
+4. After a choice is made, the waiter can take action
+5. Call the serve_guest method from the pizzeria
+6. Test if it all works
+7. save your progress
+
+### 1. Create a method for the waiter to serve_guests.
+
+```python
+  def serve_guest(self):
+```
+ 
+### 2. The serve_guests method should print a list of options for the guests
+
+Add a small menu to the body of the `serve_guest()` method. For example
+
+```
+def serve_guest(self):
+    print("How can I be of service?")
+    print("1. Would you like to order a pizza?")
+    print("2. Would you like to leave?")
+```    
+
+### 3. A guest should be able to choose from the options by their number.
+
+Call the `input` method at the bottom of the serve_guest method
+ 
+```python
+choice = input()
+``` 
+
+### 4. After a choice is made, the waiter can take action
+
+- create a method to handle the input of the `input()` method. When we create a method that needs input from another method, you have to add this data to its arguments list. 
+
+```python
+def take_order(self, order_number):
+```
+
+- call the `take_order()` method using your choice variable. By default, `input()` parses input params as strings, so be sure to convert the choice to an integer using `int()`.
+
+```python
+self.take_order(order_number=int(choice))
+```
+
+- if the choice is 1 or 2 or none of these, give appropriate response. To easily do this we can use an if/elif/else statement. Add the following content to the take_order() function.
+
+```python
+def take_order(self, order_number):
+    if order_number == 1:
+        print("Let me get the menu")
+    elif order_number == 2:
+        print("Thank you for your visit!")
+    else:
+        print("I really don't understand")
+```
+
+### 5. Call the serve_guest method from the pizzeria 
+
+- on the waiter object stored in the `w` variable, call the `serve_guest()` method.
+
+```python
+w.serve_guest()
+```
+
+### 6. Test if it all works
+
+- Open the terminal
+- Run the pizzeria class with ruby `python pizzeria.py`
+- Should display: 
+
+```
+"Good day. Welcome to our lovely little restaurant"`
+"How can I be of service?"
+"1. Would you like to order a pizza?"
+"2. Would you like to leave?"
+```
+
+- Wait for input
+- Exit
+
+
+### 7. Save your progress
+
+- Open the terminal
+- Add all the files in your project to git `git add .`
+- Commit the files to your local git `git commit -m 'choices'`
+
+
 ## [03] As a waiter. I would like to know the menu. So that I can help the guests
 
 A menu is a combination of dishes.
