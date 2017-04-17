@@ -652,25 +652,29 @@ def fetch(self, ingredients):
 
 ### 3. Create a method to add items to the check
 
-```ruby
-	def add(item)
-		@items << item
-	end
+```python
+class Check(object):
+
+    def __init__(self):
+        self.items = []
+
+    def add(self, item):
+        self.items.append(item)
 ```
 
 ### 4. Add a item to the check if it can be ordered
 
-- require the file containing the check class in the waiter class file
+- import the file containing the check class in the waiter class file
 - add a instance variable to the waiter initialize method
 
-```ruby
-@check = Check.new
+```python
+self.check = Check()
 ```
 
-- call the add method on @check if food can be ordered
+- call the add method on self.check if food can be ordered
 
-```ruby
-@check.add(dish)
+```python
+self.check.add(item=chosen_dish)
 ```
 
 ### 5. Test && Save
