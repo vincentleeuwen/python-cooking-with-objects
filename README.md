@@ -207,3 +207,134 @@ end
 - Open the terminal
 - Add all the files in your project to git `git add .`
 - Commit the files to your local git `git commit -m 'choices'`
+
+
+
+
+## [04] As a waiter. I would like to be able to order a item from the kitchen. So that the guests stop bothering me
+
+**Tasks:**
+
+1. add a number to a dish
+2. allow the ordering of food by this number
+3. call the order food after the menu was listed and supply the number of the dish
+4. add a kitchen class
+5. add a method to kitchen so it can receive orders of dishes
+6. let the waiter know about the kitchen
+7. let the kitchen know about the order
+8. test your progress
+9. save your progress
+
+
+### 1. Modify the loop that lists the menu, to also list a number that can be used by a guest
+
+```python
+def list_menu(self):
+    for index, dish in enumerate(self.menu.contents()):
+        print(index, dish.name)
+```
+
+### 2. Create a method to order food from the kitchen in waiter based on the guests choice
+
+```python
+def order_food(self, choice):
+    chosen_dish = self.menu.contents()[choice]
+```
+
+this method will assign a dish object to the dish variable.
+
+### 3. Call the `order_food` method after calling the `list_menu` method
+
+```python
+print("Let me get the menu")
+self.list_menu()
+self.order_food(choice=int(input()))
+```
+
+### 4. create a class for the kitchen
+
+- Create a file `kitchen.py`
+- Create a class in this new file 
+
+```python
+class Kitchen(object):
+    pass
+```
+
+### 5. Add a method to the kitchen so a order can be sent
+
+```python
+def order(self, dish):
+    print("KITCHEN: Order received for {0}".format(dish.name))
+end
+```
+
+### 6. Let the waiter know about the kitchen
+
+- In the `pizzeria.py` file add an import for the file containing the kitchen
+- Create a new instance of the `Kitchen` class and assign it to a variable
+
+```python
+kitchen = Kitchen()
+```
+
+- Add the option to `Waiter` to receive a kitchen in its initializer method. Assign this argument to a instance variable
+
+```python
+def __init__(self, menu, kitchen):
+    self.menu = menu
+    self.kitchen = kitchen
+```
+
+- Add the variable kitchen to the initialization of the `Waiter` class.
+
+```python
+w = Waiter(menu=menu, kitchen=kitchen)
+```
+
+### 7. Let the kitchen know about the order
+
+- In the `order_food` method of the Waiter class add a call to the order method of the Kitchen
+
+```python
+def order_food(self, choice):
+    chosen_dish = self.menu.contents()[choice]
+    self.kitchen.order(dish=chosen_dish)
+```
+
+### 8. test your program
+
+- Open the terminal
+- Run the pizzeria class with python `python pizzeria.py`
+- Should display: 
+
+```
+"Good day. Welcome to our lovely little restaurant"
+"How can I be of service?"
+"1. Would you like to order a pizza?"
+"2. Would you like to leave?"
+```
+
+- Choose 1
+- Should display: 
+
+```
+"0 Margherita"
+"1 Napoletana"
+"2 Peperoni"
+```
+
+- Choose 2
+- Should display
+
+```
+"KITCHEN: Order received for Peperoni"
+```
+
+### 9. Save your progress
+
+- Open the terminal
+- Add all the files in your project to git `git add .`
+- Commit the files to your local git `git commit -m 'choices'`
+
+
