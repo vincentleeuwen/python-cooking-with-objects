@@ -1,23 +1,23 @@
 #[Cooking 101](http://s2.quickmeme.com/img/3c/3ca2955b995c2b02bf1d821a8cf7066c5689eb3e2a4ebc7a80bfdf501290669c.jpg)
 
-We will learn today to cook with objects. We will start with creating a list of all objects of a pizzeria. 
+We will learn today to cook with objects. We will start with creating a list of all objects of a pizzeria.
 
-Because with objects oriented programming you want your code to work like a pizzeria. 
+Because with objects oriented programming you want your code to work like a pizzeria.
 
-- Waiter: You talk to the waiter. He takes your order, serves the food, checks if you want anything else and eventually you can pay the bill. 
+- Waiter: You talk to the waiter. He takes your order, serves the food, checks if you want anything else and eventually you can pay the bill.
 - Kitchen: In the kitchen the food is prepared.
 - Dish: A dish is a collection of ingredients prepared in a certain order.
 - Menu: A collection of recipes with available ingredients
-- Ingredients: Part of a recipe. 
+- Ingredients: Part of a recipe.
 - Stock: Amount of ingredients available
 - Storageroom: Holds the stock
 
 Lets start by setting up the project:
 
 - open your terminal
-- create a new directory 
+- create a new directory
 - go into the directory
-- create a .gitignore file with the following setup => https://github.com/github/gitignore/blob/master/Python.gitignore 
+- create a .gitignore file with the following setup => https://github.com/github/gitignore/blob/master/Python.gitignore
 - initialize a new git repository `git init`
 
 ## [01] As a guest. I want to be greeted by the waiter when I enter the pizzeria. So that I feel like I am welcome.
@@ -27,7 +27,7 @@ Lets start by setting up the project:
 1. create a waiter
 2. add a method to the waiter to greet a guest
 3. create a pizzeria
-4. require the waiter in the pizzeria
+4. import the waiter in the pizzeria
 5. make a instance of the waiter in the pizzeria
 6. call the greeting method
 7. test if it all works
@@ -36,7 +36,7 @@ Lets start by setting up the project:
 ### 1. Create a waiter
 
 - Create a file `waiter.py`
-- Create a class in this new file. We create a class like: 
+- Create a class in this new file. We create a class like:
 
 ```python
 class Waiter(object):
@@ -56,15 +56,16 @@ class Waiter(object):
 
 ### 3. Create a pizzeria
 
+- create a file `__init__.py`. The __init__.py files are required to make Python treat the directories as containing packages, and enable you to import modules inside a directory;
 - create a file `pizzeria.py`
 
-### 4. Require the waiter in the pizzeria
+### 4. Import the waiter in the pizzeria
 
 - at the top of `pizzeria.py` add `from waiter import Waiter` to include the Waiter class.
 
 ### 5. Make a instance of the waiter in the pizzeria
 
-A instance is when we create a object from a class. You can create a object by calling the constructor method, `Waiter()`, and by default it takes no arguments. 
+A instance is when we create a object from a class. You can create a object by calling the constructor method, `Waiter()`, and by default it takes no arguments.
 
 - Create a new instance of `Waiter` and assign it to a variable `w = Waiter()`
 
@@ -101,7 +102,7 @@ A instance is when we create a object from a class. You can create a object by c
 ```python
   def serve_guest(self):
 ```
- 
+
 ### 2. The serve_guests method should print a list of options for the guests
 
 Add a small menu to the body of the `serve_guest()` method. For example
@@ -116,14 +117,14 @@ def serve_guest(self):
 ### 3. A guest should be able to choose from the options by their number.
 
 Call the `input` method at the bottom of the serve_guest method
- 
+
 ```python
 choice = input()
-``` 
+```
 
 ### 4. After a choice is made, the waiter can take action
 
-- create a method to handle the input of the `input()` method. When we create a method that needs input from another method, you have to add this data to its arguments list. 
+- create a method to handle the input of the `input()` method. When we create a method that needs input from another method, you have to add this data to its arguments list.
 
 ```python
 def take_order(self, order_number):
@@ -147,7 +148,7 @@ def take_order(self, order_number):
         print("I really don't understand")
 ```
 
-### 5. Call the serve_guest method from the pizzeria 
+### 5. Call the serve_guest method from the pizzeria
 
 - on the waiter object stored in the `w` variable, call the `serve_guest()` method.
 
@@ -159,7 +160,7 @@ w.serve_guest()
 
 - Open the terminal
 - Run the pizzeria class with ruby `python pizzeria.py`
-- Should display: 
+- Should display:
 
 ```
 "Good day. Welcome to our lovely little restaurant"`
@@ -247,7 +248,7 @@ A *instance variable* is available to all methods of a class instance (object). 
 
 ###5. Create a array of dishes calling its constructor with a name
 
-- require the file containing the dish class inside the file containing the menu class
+- import the file containing the dish class inside the file containing the menu class
 
 ```python
 from dish import Dish
@@ -269,7 +270,7 @@ self.menu.append(Dish(dish_name="Pepperoni"))
 
 ###6. let the waiter know about the menu
 
-- require the file containing the menu in the pizzeria file.
+- import the file containing the menu in the pizzeria file.
 
 ```python
 from menu import Menu
@@ -902,4 +903,3 @@ def calculate_sum(self):
 - let the waiter call this method and tell the value after saying "Thank you for your visit"
 
 ### 4. Test && Save
-
