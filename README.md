@@ -438,7 +438,7 @@ self.menu.append(Dish(
 def order(self, dish):
     print("KITCHEN: Order received for {0}".format(dish.name))
     print("I'm gonna need some:")
-    
+
     for ingredient in dish.ingredients:
         print("{0} - {1}".format(ingredient.amount, ingredient.name))
 
@@ -484,3 +484,253 @@ def order(self, dish):
 - Open the terminal
 - Add all the files in your project to git `git add .`
 - Commit the files to your local git `git commit -m 'choices'`
+
+
+
+## [06] As a waiter. I would like to know if a dish can still be ordered. So that I don't try sell unavailable dishes.
+
+Add a storage and check before a order can be placed. When a dish is prepared, update the stock.
+
+### 1. Create a class for Storage
+
+- Create a file `storage.py`
+- Create a class in this new file
+
+### 2. Add a initialize method to the Storage class that creates stock for a bunch of ingredients
+
+```python
+from ingredient import Ingredient
+```
+
+```python
+def __init__(self):
+    self.items = [
+        Ingredient(name=Ingredient.TOMATO, amount=8),
+        Ingredient(name=Ingredient.DOUGH, amount=2),
+        Ingredient(name=Ingredient.MOZZARELLA, amount=1),
+        Ingredient(name=Ingredient.PEPPERONI, amount=0.3),
+    ]
+```
+
+### 3. Add a method to decrease the amount of a ingredient to the Ingredient class
+
+```python
+def use(self, amount):
+    self.amount -= amount
+```
+
+### 4. Add a fetch method to the Storage class
+
+- Create a check_storage method that takes an ingredient as a argument and finds it for you in the storage
+
+```python
+def check_storage(self, ingredient):
+    for storage_item in self.items:
+        if ingredient.name == storage_item.name:
+            return storage_item
+```
+
+- Create a fetch method that takes a list of ingredients as a argument and checks them out of the storage using the check_storage method
+
+```python
+def fetch(self, ingredients):
+    for ingredient in ingredients:
+        storage_item = self.check_storage(ingredient)
+        if storage_item:
+            storage_item.use(amount=ingredient.amount)
+```
+
+### 5. Let the kitchen create a instance of the storage
+
+- import the file which is declaring the storage class in kitchen
+
+```python
+from storage import Storage
+
+class Kitchen(object):
+```
+
+- add a initializer method to the kitchen and create a instance of storage
+
+```python
+def __init__(self):
+    self.storage = Storage()
+```
+
+### 5. Call the fetch method when a order is placed. Add it to the bottom of the order method of Kitchen
+
+```python
+return self.storage.fetch(ingredients=dish.ingredients)
+```
+
+### 6. Add a check to the `order_food` method of the `Waiter` class and wrap the order in it.
+
+```python
+def order_food(self, choice):
+    chosen_dish = self.menu.contents()[choice]
+    if self.kitchen.order(dish=chosen_dish):
+        print("Dish is on the way")
+    else:
+        print("Sorry, this dish is not available")
+```
+
+### 7. Change the fetch method of Storage to return a boolean if a dish is not available
+
+The kitchen has the order method which tries to fetch items from the storage. Make it return False if an item can't be found in the storage, and True otherwise.
+
+```python
+def fetch(self, ingredients):
+    for ingredient in ingredients:
+        storage_item = self.check_storage(ingredient)
+        if storage_item:
+            storage_item.use(amount=ingredient.amount)
+        else:
+            return False
+    return True
+```
+
+### 8. test your program
+
+- Open the terminal
+- Run the pizzeria class with ruby `ruby pizzeria.rb`
+- Should display:
+
+```
+"Good day. Welcome to our lovely little restaurant"
+"How can I be of service?"
+"1. Would you like to order a pizza?"
+"2. Would you like to leave?"
+```
+
+- Choose 1
+- Should display:
+
+```
+"0. Margherita"
+"1. Napoletana"
+"2. Pepperoni"
+```
+
+- Choose 1
+- Should display
+
+```
+"KITCHEN: Order received for Napoletana"
+"Im gonna need some:"
+"3 - Tomato"
+"0.25 - Dough"
+"0.2 - Mozzarella"
+"0.05 - Anchovies"
+"Sorry this dish is not available"
+```
+
+- Likewise, if you choose pizza #0, the response should be:
+
+```
+"KITCHEN: Order received for Margherita"
+"Im gonna need some:"
+"3 - Tomato"
+"0.25 - Dough"
+"0.2 - Mozzarella"
+"Dish is on the way"
+```
+
+
+### 9. Save your progress
+
+- Open the terminal
+- Add all the files in your project to git `git add .`
+- Commit the files to your local git `git commit -m 'choices'`
+
+
+## [07] As a waiter. I would like to keep track of the items that a customer orders. So that I can present the bill afterwards.
+
+### 1. Add a class for check
+### 2. Add a initializer method which creates a empty array
+
+ - create a instance variable in the initializer and assign a empty array to it
+
+### 3. Create a method to add items to the check
+
+```ruby
+	def add(item)
+		@items << item
+	end
+```
+
+### 4. Add a item to the check if it can be ordered
+
+- require the file containing the check class in the waiter class file
+- add a instance variable to the waiter initialize method
+
+```ruby
+@check = Check.new
+```
+
+- call the add method on @check if food can be ordered
+
+```ruby
+@check.add(dish)
+```
+
+### 5. Test && Save
+
+## [08] As a guest. I would like to keep ordering food until there is no stock left or I have had enough. So that I have a good time
+
+### 1. add a method to waiter to check if he is still serving a guest
+
+- add a boolean to the waiter class as a instance variable `@serving`. Add it to the initializer and give it the value of `true`
+- create a method for waiter which returns the value of the boolean
+
+```ruby
+def serving?
+  return @serving
+end
+```
+
+### 2. create a loop for waiter in the pizzeria
+
+```ruby
+while(w.serving?) do
+  w.serve_guest
+end
+```
+
+### 3. stop serving if a guest wants to leave
+
+- in the method `take_order` of Waiter. Set @serving to false if a guest wants to leave.
+
+
+### 4. Test && Save
+
+## [09] As a waiter. I would like to present the bill after a guest is done. So that I can get payed.
+
+### 1. Add a price field to the dish
+
+- add a price to the arguments of the initializer of the dish class
+- assign the price to a instance variable
+- create a method to return the value of the instance variable
+
+### 2. Add a price to all the dishes on the menu
+
+- in the menu class initializer, add a price for each of the three dishes
+
+### 3. Add a method to check to calculate the sum of all dishes
+
+- create a method on the check class that loops over all items
+- create a local variable sum for this method
+- for each dish in the item loop, add the price to the sum
+- return the value of sum
+- let the waiter call this method and tell the value after saying "Thank you for your visit"
+
+### 4. Test && Save
+
+## [10] As a waiter. I would like the guest not being able to order a non existing dish
+
+## [11] As a waiter. I would like to greet my guests in a way appropriate to the time of day. So that I look distinguished
+
+## [12] As a guest. I would like to be able to order drinks asw ell
+
+## [13] As a guest. I would like to also order pastas
+
+## [14] As a waiter. I would like to save all payed bills to the disk.
