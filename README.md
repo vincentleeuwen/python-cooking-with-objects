@@ -309,17 +309,17 @@ def contents(self):
 - create a `list_menu` method in the `Waiter` class to list all the dishes
 
 ```python
-  def list_menu(self):
-  	  for dish in self.menu.contents():
-    	  print(dish)
+def list_menu(self):
+    for dish in self.menu.contents():
+        print(dish)
 ```
-- call the `list_menu` method in the case statement
+- call the `list_menu` method in the if statement
 
 ```python
-  def take_order(self, order_number):
-        if order_number == 1:
-            answer = "Let me get the menu"
-            self.list_menu()
+def take_order(self, order_number):
+    if order_number == 1:
+        answer = "Let me get the menu"
+        self.list_menu()
 ```
 
 ###8. test your progress
@@ -350,10 +350,9 @@ def contents(self):
 - In the loop printing the dishes, call the `name` property to display the name
 
 ```python
-   def list_menu(self):
-       for dish in self.menu.contents():
-           print(dish.name)
-
+def list_menu(self):
+   for dish in self.menu.contents():
+       print(dish.name)
 ```
 
 ###10. test your program
