@@ -224,7 +224,6 @@ When a object is constructed, its initialize method is called. So when you call 
 
 ```python
 def __init__(self):
-	pass
 ```
 
 - Inside the initialize method of Menu we are going create the following dishes. Margherita, Napoletana, Peperoni
@@ -235,15 +234,13 @@ def __init__(self):
 
 ```python
 def __init__(self, dish_name):
-	pass
 ```
 
 - Assign the argument of the constructor to a instance variable `@name`
 
 ```python
 def __init__(self, dish_name)
-  self.name = dish_name
-end
+    self.name = dish_name
 ```
 
 A *instance variable* is available to all methods of a class instance (object). Unlike a normal variable which is only available inside the method where it was created.
@@ -289,8 +286,7 @@ menu = Menu()
 
 ```python
 def __init__(self, menu):
-  self.menu = menu
-end
+    self.menu = menu
 ```
 
 - Change the call to the constructor of Waiter in Pizzeria to receive a menu.
@@ -306,8 +302,7 @@ w = Waiter(menu=menu)
 
 ```python
 def contents(self):
-  return self.menu
-end
+    return self.menu
 ```
 
 
