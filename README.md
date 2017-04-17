@@ -433,7 +433,6 @@ self.order_food(choice=int(input()))
 
 ```python
 class Kitchen(object):
-    pass
 ```
 
 ### 5. Add a method to the kitchen so a order can be sent
@@ -441,7 +440,6 @@ class Kitchen(object):
 ```python
 def order(self, dish):
     print("KITCHEN: Order received for {0}".format(dish.name))
-end
 ```
 
 ### 6. Let the waiter know about the kitchen
@@ -540,7 +538,6 @@ def order_food(self, choice):
 def __init__(self, name, amount):
     self.name = name
     self.amount = amount
-
 ```
 
 ### 3. Add constants for the pizza ingredient names
@@ -613,10 +610,8 @@ self.menu.append(Dish(
 def order(self, dish):
     print("KITCHEN: Order received for {0}".format(dish.name))
     print("I'm gonna need some:")
-
     for ingredient in dish.ingredients:
         print("{0} - {1}".format(ingredient.amount, ingredient.name))
-
 ```
 
 
@@ -637,9 +632,9 @@ def order(self, dish):
 - Should display:
 
 ```bash
-"0. Margherita"
-"1. Napoletana"
-"2. Peperoni"
+"0 Margherita"
+"1 Napoletana"
+"2 Peperoni"
 ```
 
 - Choose 1
@@ -767,7 +762,7 @@ def fetch(self, ingredients):
 ### 8. test your program
 
 - Open the terminal
-- Run the pizzeria class with ruby `ruby pizzeria.rb`
+- Run the pizzeria class with ruby `python pizzeria.py`
 - Should display:
 
 ```
