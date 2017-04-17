@@ -9,3 +9,6 @@ class Ingredient(object):
     def __init__(self, name, amount):
         self.name = name
         self.amount = amount
+
+    def use(self, amount):
+        self.amount -= amount

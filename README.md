@@ -376,7 +376,7 @@ class Ingredient(object):
     DOUGH = "Dough"
     MOZZARELLA = "Mozzarella"
     ANCHOVIES = "Anchovies"
-    PEPERONI = "Peperoni"
+    PEPPERONI = "Peperoni"
 
 ```
 
@@ -425,7 +425,7 @@ self.menu.append(Dish(
         Ingredient(name=Ingredient.TOMATO, amount=3),
         Ingredient(name=Ingredient.DOUGH, amount=0.25),
         Ingredient(name=Ingredient.MOZZARELLA, amount=0.2),
-        Ingredient(name=Ingredient.PEPERONI, amount=0.1)
+        Ingredient(name=Ingredient.PEPPERONI, amount=0.1)
     ])
 )
 ```
