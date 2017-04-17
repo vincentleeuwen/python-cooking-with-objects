@@ -864,26 +864,22 @@ self.check.add(item=chosen_dish)
 
 ### 1. add a method to waiter to check if he is still serving a guest
 
-- add a boolean to the waiter class as a instance variable `@serving`. Add it to the initializer and give it the value of `true`
-- create a method for waiter which returns the value of the boolean
+- add a boolean to the waiter class as a instance variable `self.serving`. Add it to the initializer and give it the value of `True`
 
-```ruby
-def serving?
-  return @serving
-end
+```python
+self.serving = True
 ```
 
 ### 2. create a loop for waiter in the pizzeria
 
-```ruby
-while(w.serving?) do
-  w.serve_guest
-end
+```python
+while w.serving:
+    w.serve_guest()
 ```
 
 ### 3. stop serving if a guest wants to leave
 
-- in the method `take_order` of Waiter. Set @serving to false if a guest wants to leave.
+- in the method `take_order()` of Waiter. Set self.serving to `False` if a guest wants to leave.
 
 
 ### 4. Test && Save
@@ -910,12 +906,4 @@ end
 
 ### 4. Test && Save
 
-## [10] As a waiter. I would like the guest not being able to order a non existing dish
 
-## [11] As a waiter. I would like to greet my guests in a way appropriate to the time of day. So that I look distinguished
-
-## [12] As a guest. I would like to be able to order drinks asw ell
-
-## [13] As a guest. I would like to also order pastas
-
-## [14] As a waiter. I would like to save all payed bills to the disk.
