@@ -132,14 +132,14 @@ end
 
 - create a `list_menu` method in the `Waiter` class to list all the dishes
 
-```
+```python
   def list_menu(self):
   	  for dish in self.menu.contents():
     	  print(dish)
 ```
 - call the `list_menu` method in the case statement
 
-```
+```python
   def take_order(self, order_number):
         if order_number == 1:
             answer = "Let me get the menu"
