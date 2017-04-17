@@ -1,6 +1,9 @@
 
 class Waiter(object):
 
+    def __init__(self, menu):
+        self.menu = menu
+
     def greet_guest(self):
         print("Good day. Welcome to our lovely little restaurant.")
 
@@ -15,7 +18,12 @@ class Waiter(object):
     def take_order(self, order_number):
         if order_number == 1:
             print("Let me get the menu")
+            self.list_menu()
         elif order_number == 2:
             print("Thank you for your visit!")
         else:
             print("I really don't understand")
+
+    def list_menu(self):
+        for dish in self.menu.contents():
+            print(dish.name)
