@@ -890,7 +890,6 @@ while w.serving:
 
 - add a price to the arguments of the initializer of the dish class
 - assign the price to a instance variable
-- create a method to return the value of the instance variable
 
 ### 2. Add a price to all the dishes on the menu
 
@@ -902,8 +901,16 @@ while w.serving:
 - create a local variable sum for this method
 - for each dish in the item loop, add the price to the sum
 - return the value of sum
+
+```python
+def calculate_sum(self):
+    total_sum = 0
+    for dish in self.items:
+        total_sum += dish.price
+    return total_sum
+```
+
 - let the waiter call this method and tell the value after saying "Thank you for your visit"
 
 ### 4. Test && Save
-
 
