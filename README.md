@@ -63,9 +63,9 @@ class Waiter(object):
 
 - at the top of `pizzeria.py` add `from waiter import Waiter` to include the Waiter class.
 
-### 5. Make a instance of the waiter in the pizzeria
+### 5. Make an instance of the waiter in the pizzeria
 
-A instance is when we create a object from a class. You can create a object by calling the constructor method, `Waiter()`, and by default it takes no arguments.
+An instance is when we create an object from a class. You can create a object by calling the constructor method, `Waiter()`, and by default it takes no arguments.
 
 - Create a new instance of `Waiter` and assign it to a variable `w = Waiter()`
 
@@ -217,9 +217,9 @@ class Dish(object):
 ```
 
 
-###3. add a initialize method to the menu to create a array of dishes
+###3. add a initialize method to the menu to create an array of dishes
 
-When a object is constructed, its initialize method is called. So when you call Menu() to create a object of the menu class, it searches for the initialize method in the Menu class.
+When an object is constructed, its initialize method is called. So when you call Menu() to create a object of the menu class, it searches for the initialize method in the Menu class.
 
 - Add the initialize method to the Menu class
 
@@ -237,16 +237,16 @@ def __init__(self):
 def __init__(self, dish_name):
 ```
 
-- Assign the argument of the constructor to a instance variable `@name`
+- Assign the argument of the constructor to an instance variable `@name`
 
 ```python
 def __init__(self, dish_name)
     self.name = dish_name
 ```
 
-A *instance variable* is available to all methods of a class instance (object). Unlike a normal variable which is only available inside the method where it was created.
+An *instance variable* is available to all methods of a class instance (object). Unlike a normal variable which is only available inside the method where it was created.
 
-###5. Create a array of dishes calling its constructor with a name
+###5. Create an array of dishes calling its constructor with a name
 
 - import the file containing the dish class inside the file containing the menu class
 
@@ -254,7 +254,7 @@ A *instance variable* is available to all methods of a class instance (object). 
 from dish import Dish
 ```
 
-- create a array inside the initialize method of the Menu class and assign it to a instance variable
+- create an array inside the initialize method of the Menu class and assign it to a instance variable
 
 ```python
 self.menu = []
@@ -276,7 +276,7 @@ self.menu.append(Dish(dish_name="Pepperoni"))
 from menu import Menu
 ```
 
-- Create a instance of the menu class by calling its constructor.
+- Create an instance of the menu class by calling its constructor.
 
 ```python
 menu = Menu()
@@ -387,7 +387,7 @@ def list_menu(self):
 
 
 
-## [04] As a waiter. I would like to be able to order a item from the kitchen. So that the guests stop bothering me
+## [04] As a waiter. I would like to be able to order an item from the kitchen. So that the guests stop bothering me
 
 **Tasks:**
 
@@ -558,7 +558,7 @@ Constants are used to prevent misspelling.
 
 ### 4. When creating a dish, add ingredients
 
-- Add a ingredients list to the initializer of the Dish class
+- Add an ingredients list to the initializer of the Dish class
 
 ```python
 def __init__(self, dish_name, ingredients):
@@ -667,7 +667,7 @@ Add a storage and check before a order can be placed. When a dish is prepared, u
 - Create a file `storage.py`
 - Create a class in this new file
 
-### 2. Add a initialize method to the Storage class that creates stock for a bunch of ingredients
+### 2. Add an initialize method to the Storage class that creates stock for a bunch of ingredients
 
 ```python
 from ingredient import Ingredient
@@ -711,7 +711,7 @@ def fetch(self, ingredients):
             storage_item.use(amount=ingredient.amount)
 ```
 
-### 5. Let the kitchen create a instance of the storage
+### 5. Let the kitchen create an instance of the storage
 
 - import the file which is declaring the storage class in kitchen
 
@@ -721,7 +721,7 @@ from storage import Storage
 class Kitchen(object):
 ```
 
-- add a initializer method to the kitchen and create a instance of storage
+- add an initializer method to the kitchen and create a instance of storage
 
 ```python
 def __init__(self):
@@ -817,9 +817,9 @@ def fetch(self, ingredients):
 ## [07] As a waiter. I would like to keep track of the items that a customer orders. So that I can present the bill afterwards.
 
 ### 1. Add a class for check
-### 2. Add a initializer method which creates a empty array
+### 2. Add an initializer method which creates an empty array
 
- - create a instance variable in the initializer and assign a empty array to it
+ - create an instance variable in the initializer and assign an empty array to it
 
 ### 3. Create a method to add items to the check
 
@@ -833,10 +833,10 @@ class Check(object):
         self.items.append(item)
 ```
 
-### 4. Add a item to the check if it can be ordered
+### 4. Add an item to the check if it can be ordered
 
 - import the file containing the check class in the waiter class file
-- add a instance variable to the waiter initialize method
+- add an instance variable to the waiter initialize method
 
 ```python
 self.check = Check()
