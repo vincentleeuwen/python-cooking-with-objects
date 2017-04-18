@@ -28,7 +28,7 @@ Lets start by setting up the project:
 2. add a method to the waiter to greet a guest
 3. create a pizzeria
 4. import the waiter in the pizzeria
-5. make a instance of the waiter in the pizzeria
+5. make an instance of the waiter in the pizzeria
 6. call the greeting method
 7. test if it all works
 8. save your progress
@@ -65,13 +65,13 @@ class Waiter(object):
 
 ### 5. Make an instance of the waiter in the pizzeria
 
-An instance is when we create an object from a class. You can create a object by calling the constructor method, `Waiter()`, and by default it takes no arguments.
+An instance is when we create an object from a class. You can create an object by calling the constructor method, `Waiter()`, and by default it takes no arguments.
 
 - Create a new instance of `Waiter` and assign it to a variable `w = Waiter()`
 
 ### 6. Call the greeting method
 
-- Call a method on a object by placing it after a dot. Like `object.method()`. So to call the `greet_guest` method on the object stored in `w` you can call `w.greet_guest()`
+- Call a method on an object by placing it after a dot. Like `object.method()`. So to call the `greet_guest` method on the object stored in `w` you can call `w.greet_guest()`
 
 ### 7. Test if it all works
 
@@ -188,9 +188,9 @@ A menu is a combination of dishes.
 
 1. create a class for menu
 2. create a class for dish
-3. add a initialize method to the menu to create a array of dishes
-4. add a initialize method to the dish
-5. create a array of dishes calling its constructor with a name
+3. add an initialize method to the menu to create an array of dishes
+4. add an initialize method to the dish
+5. create an array of dishes calling its constructor with a name
 6. let the waiter know about the menu
 7. let the waiter tell guests the contents of the menu
 8. test your progress
@@ -217,9 +217,9 @@ class Dish(object):
 ```
 
 
-###3. add a initialize method to the menu to create an array of dishes
+###3. add an initialize method to the menu to create an array of dishes
 
-When an object is constructed, its initialize method is called. So when you call Menu() to create a object of the menu class, it searches for the initialize method in the Menu class.
+When an object is constructed, its initialize method is called. So when you call Menu() to create an object of the menu class, it searches for the initialize method in the Menu class.
 
 - Add the initialize method to the Menu class
 
@@ -229,9 +229,9 @@ def __init__(self):
 
 - Inside the initialize method of Menu we are going create the following dishes. Margherita, Napoletana, Peperoni
 
-###4. Add a initialize method to the dish
+###4. Add an initialize method to the dish
 
-- To create a `Dish` with a name, you can use the initialize method again. Add a initialize method (constructor) to the `Dish` class that takes a `dish_name` as a argument.
+- To create a `Dish` with a name, you can use the initialize method again. Add an initialize method (constructor) to the `Dish` class that takes a `dish_name` as an argument.
 
 ```python
 def __init__(self, dish_name):
@@ -254,7 +254,7 @@ An *instance variable* is available to all methods of a class instance (object).
 from dish import Dish
 ```
 
-- create an array inside the initialize method of the Menu class and assign it to a instance variable
+- create an array inside the initialize method of the Menu class and assign it to an instance variable
 
 ```python
 self.menu = []
@@ -282,8 +282,8 @@ from menu import Menu
 menu = Menu()
 ```
 
-- Add a constructor method to the waiter class that takes a argument for menu.
-- Assign the argument to a instance variable.
+- Add a constructor method to the waiter class that takes an argument for menu.
+- Assign the argument to an instance variable.
 
 ```python
 def __init__(self, menu):
@@ -436,7 +436,7 @@ self.order_food(choice=int(input()))
 class Kitchen(object):
 ```
 
-### 5. Add a method to the kitchen so a order can be sent
+### 5. Add a method to the kitchen so an order can be sent
 
 ```python
 def order(self, dish):
@@ -452,7 +452,7 @@ def order(self, dish):
 kitchen = Kitchen()
 ```
 
-- Add the option to `Waiter` to receive a kitchen in its initializer method. Assign this argument to a instance variable
+- Add the option to `Waiter` to receive a kitchen in its initializer method. Assign this argument to an instance variable
 
 ```python
 def __init__(self, menu, kitchen):
@@ -533,7 +533,7 @@ def order_food(self, choice):
 - Create a file `ingredient.py`
 - Create a class in this new file
 
-### 2. Add a initializer to the ingredient class that can take a name and amount
+### 2. Add an initializer to the ingredient class that can take a name and amount
 
 ```python
 def __init__(self, name, amount):
@@ -660,7 +660,7 @@ def order(self, dish):
 
 ## [06] As a waiter. I would like to know if a dish can still be ordered. So that I don't try sell unavailable dishes.
 
-Add a storage and check before a order can be placed. When a dish is prepared, update the stock.
+Add a storage and check before an order can be placed. When a dish is prepared, update the stock.
 
 ### 1. Create a class for Storage
 
@@ -683,7 +683,7 @@ def __init__(self):
     ]
 ```
 
-### 3. Add a method to decrease the amount of a ingredient to the Ingredient class
+### 3. Add a method to decrease the amount of an ingredient to the Ingredient class
 
 ```python
 def use(self, amount):
@@ -692,7 +692,7 @@ def use(self, amount):
 
 ### 4. Add a fetch method to the Storage class
 
-- Create a check_storage method that takes an ingredient as a argument and finds it for you in the storage
+- Create a check_storage method that takes an ingredient as an argument and finds it for you in the storage
 
 ```python
 def check_storage(self, ingredient):
@@ -701,7 +701,7 @@ def check_storage(self, ingredient):
             return storage_item
 ```
 
-- Create a fetch method that takes a list of ingredients as a argument and checks them out of the storage using the check_storage method
+- Create a fetch method that takes a list of ingredients as an argument and checks them out of the storage using the check_storage method
 
 ```python
 def fetch(self, ingredients):
@@ -721,14 +721,14 @@ from storage import Storage
 class Kitchen(object):
 ```
 
-- add an initializer method to the kitchen and create a instance of storage
+- add an initializer method to the kitchen and create an instance of storage
 
 ```python
 def __init__(self):
     self.storage = Storage()
 ```
 
-### 5. Call the fetch method when a order is placed. Add it to the bottom of the order method of Kitchen
+### 5. Call the fetch method when an order is placed. Add it to the bottom of the order method of Kitchen
 
 ```python
 return self.storage.fetch(ingredients=dish.ingredients)
@@ -854,7 +854,7 @@ self.check.add(item=chosen_dish)
 
 ### 1. add a method to waiter to check if he is still serving a guest
 
-- add a boolean to the waiter class as a instance variable `self.serving`. Add it to the initializer and give it the value of `True`
+- add a boolean to the waiter class as an instance variable `self.serving`. Add it to the initializer and give it the value of `True`
 
 ```python
 self.serving = True
@@ -879,7 +879,7 @@ while w.serving:
 ### 1. Add a price field to the dish
 
 - add a price to the arguments of the initializer of the dish class
-- assign the price to a instance variable
+- assign the price to an instance variable
 
 ### 2. Add a price to all the dishes on the menu
 
