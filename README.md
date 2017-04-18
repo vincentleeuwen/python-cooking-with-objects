@@ -159,7 +159,7 @@ w.serve_guest()
 ### 6. Test if it all works
 
 - Open the terminal
-- Run the pizzeria class with ruby `python pizzeria.py`
+- Run the pizzeria class with python `python pizzeria.py`
 - Should display:
 
 ```
@@ -326,7 +326,7 @@ def take_order(self, order_number):
 ###8. test your progress
 
 - Open the terminal
-- Run the pizzeria class with ruby `python pizzeria.py`
+- Run the pizzeria class with python `python pizzeria.py`
 - Should display:
 
 ```bash
@@ -359,7 +359,7 @@ def list_menu(self):
 ###10. test your program
 
 - Open the terminal
-- Run the pizzeria class with ruby `python pizzeria.py`
+- Run the pizzeria class with python `python pizzeria.py`
 - Should display:
 
 ```
@@ -619,7 +619,7 @@ def order(self, dish):
 ### 6. test your program
 
 - Open the terminal
-- Run the pizzeria class with ruby `python pizzeria.py`
+- Run the pizzeria class with python `python pizzeria.py`
 - Should display:
 
 ```bash
@@ -763,7 +763,7 @@ def fetch(self, ingredients):
 ### 8. test your program
 
 - Open the terminal
-- Run the pizzeria class with ruby `python pizzeria.py`
+- Run the pizzeria class with python `python pizzeria.py`
 - Should display:
 
 ```
