@@ -27,7 +27,7 @@ class Waiter(object):
             self.order_food(choice=int(input()))
         elif order_number == 2:
             print("Thank you for your visit!")
-            print("The total bll is: €{0},-".format(self.check.calculate_sum()))
+            print("The total bill is: €{0},-".format(self.check.calculate_sum()))
             self.serving = False
         else:
             print("I really don't understand")
