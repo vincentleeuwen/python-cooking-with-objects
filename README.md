@@ -103,11 +103,15 @@ dependencies that the IPython project needs in order to work correctly.
 
 ### 4. Test if it all works
 
-- In your terminal type the following:
+- In your terminal start IPython:
 
 ```shell
 > ipython
+```
 
+You should now see something like:
+
+```
 Python 3.6.0 (default, Dec 24 2016, 00:01:50)
 Type "copyright", "credits" or "license" for more information.
 
