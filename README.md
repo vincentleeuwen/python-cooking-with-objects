@@ -1080,3 +1080,94 @@ True
 ### 3. Test && Save
 
 - if you didn't change the inventory in your Storage initializer, you should now be able to order two pizza margheritas, but receive a "Sorry, this dish is not available" after that.
+
+
+## [12] As developer. I would like code that is tested automatically.
+
+The saying goes: `untested code is broken code`. In our experience this holds for anything but the most trivial projects.
+But doing testing well is in itself also a non trivial exercise. What parts do you test? Are you sure that you are only
+testing your code? Are you testing all the edge cases? Besides writing automated tests means introducing more code which
+in turn means maintaining a larger codebase.
+
+Python has long ago adopted the so called xUnit testing paradigm, the unit testing work originally introduced in Java
+(and Smalltalk) by Kent Beck. Over the years of Python pragmatism has thought us that the xUnit way of working is quite
+verbose and sometimes inflexible. Therefore we will use the `pytest` testing framework which is the new `standard` for
+writing tests in Python.
+
+## 1. Install the `pytest` testing framework.
+ 
+- Update your requirements.txt and add the following line to it:
+
+```
+pytest==3.0.7
+```
+
+- Run `pip` to update the dependencies within your virtualenv:
+
+```shell
+$ pip install -r requirements.txt
+```
+
+- Test that pytest works:
+
+```shell
+$ pytest
+```
+
+The output should be something like:
+
+```shell
+========================================================= test session starts =========================================================
+platform darwin -- Python 3.6.0, pytest-3.0.7, py-1.4.33, pluggy-0.4.0
+rootdir: /Users/remco/Tmp/boer, inifile:
+collected 0 items
+
+==================================================== no tests ran in 0.00 seconds =====================================================
+```
+
+## 2. Let's add a test to test `calculate_sum` in the `Check` class
+
+- Add a new directory in your project directory called `tests` inside that directory add `__init__.py`
+
+- Add a new file inside of the `tests` directory called `test_check.py`, inside of it add the following code:
+
+```python
+from check import Check
+from dish import Dish
+
+def test_check():
+    pasta = Dish('Pasta', [], 10)
+    pizza = Dish('Pizza', [], 15)
+    c = Check()
+
+    # Without any items check sum must be 0
+    assert c.calculate_sum() == 0
+
+    # Adding an item should have sum equal to the item
+    c.add(pasta)
+    assert c.calculate_sum() == 10
+    
+    # Adding another item should have sum equal sum of both items
+    c.add(pizza)
+    assert c.calculate_sum() == 25
+
+```
+
+## 3. Run the tests and enjoy the beauty of the color green:
+
+```shell
+$ pytest
+
+========================================================= test session starts =========================================================
+platform darwin -- Python 3.6.0, pytest-3.0.7, py-1.4.33, pluggy-0.4.0
+rootdir: /Users/remco/Projects/cours/advanced-python/python-cooking-with-objects/12, inifile:
+collected 1 items
+
+tests/test_check.py .
+
+====================================================== 1 passed in 0.01 seconds =======================================================
+```
+
+We are now ready to reap the rewards of automated testing. Refactoring your code without the worries of possible breaking
+it!
+
