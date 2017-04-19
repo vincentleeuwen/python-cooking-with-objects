@@ -947,3 +947,27 @@ def fetch(self, ingredients):
 ```
 
 ### 3. Test && Save
+
+## [11] As storage. I would like to check for all my ingredients if inventory is sufficient, before informing the kitchen.
+
+So far the storage has only been checking whether an ingredient existed, rather than doing the full check if enough amounts of each ingredient are available. Let's fix this!
+
+### 1. Track available ingredients in a checklist
+
+- create an empty checklist array (list in python).
+- while looping over your storage items, if an item is not there, append a boolean `False` to your checklist
+- if the ingredient is present, append `True` if inventory is sufficient, and `False` otherwise. Tip: in python, the comparison operator returns a Boolean!
+
+```
+>>> 4 >= 2
+True
+```
+
+### 2. See if all ingredients are available, and update inventory accordingly
+
+- check if the boolean `False` appears in you checklist, and store this in variable `all_ingredients_are_there`
+- if all ingredients are there, loop over each ingredient once again, index into `self.items` and update the ingredient amount via `use()`
+
+### 3. Test && Save
+
+- if you didn't change the inventory in your Storage initializer, you should now be able to order two pizza margheritas, but receive a "Sorry, this dish is not available" after that.
