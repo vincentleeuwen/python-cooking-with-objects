@@ -192,7 +192,7 @@ An instance is when we create an object from a class. You can create an object b
 
 - Open the terminal
 - Add all the files in your project to git `git add .`
-- Commit the files to your local git `git commit -m 'greetings'`
+- Commit the files to your local git `git commit -m 'Added greetings'`
 
 ## [02] As a guest. I would like the waiter to help me. So that I can have a bite to eat
 
