@@ -25,5 +25,6 @@ class Storage(object):
                 # the ingredient isn't there
                 return False
             else:
+                # we now know it's there, so we can use the storage_item
                 storage_item.use(amount=ingredient.amount)
         return True

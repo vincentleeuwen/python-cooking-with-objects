@@ -903,3 +903,47 @@ def calculate_sum(self):
 - let the waiter call this method and tell the value after saying "Thank you for your visit"
 
 ### 4. Test && Save
+
+
+## [10] As storage. I would like to keep track of my ingredients more efficiently, so I don't have to loop over every single item.
+
+### 1. Replace the storage items with a dictionary
+
+- in your Storage class initializer method, remove the list syntax `[]` with dictionary syntax `{}`
+- use the ingredient names as keys, and the ingredient objects as values
+
+```python
+def __init__(self):
+    self.items = {
+        Ingredient.TOMATO: Ingredient(name=Ingredient.TOMATO, amount=8),
+        Ingredient.DOUGH: Ingredient(name=Ingredient.DOUGH, amount=2),
+        Ingredient.MOZZARELLA: Ingredient(name=Ingredient.MOZZARELLA, amount=1),
+        Ingredient.PEPPERONI: Ingredient(name=Ingredient.PEPPERONI, amount=0.3)
+    }
+```
+
+- comment out the `check_storage` method for now
+
+### 2. Find your storage items using the name of your ingredients
+
+- inside the ingredient loop in `fetch()`, index into `self.items` using the ingredient name
+- be sure to use `Try/Except` to catch a potential `KeyError`, as we don't know for sure whether all ingredients will be available in the storage
+- if you catch a `KeyError`, be sure to return `False` so the kitchen is updated
+- if the ingredient is there, use an `else` statement to update the ingredient, as before
+
+```python
+def fetch(self, ingredients):
+    for ingredient in ingredients:
+        try:
+            # look up the ingredient in the storage
+            storage_item = self.items[ingredient.name]
+        except KeyError:
+            # the ingredient isn't there
+            return False
+        else:
+            # we now know it's there, so we can use the storage_item
+            storage_item.use(amount=ingredient.amount)
+    return True
+```
+
+### 3. Test && Save
