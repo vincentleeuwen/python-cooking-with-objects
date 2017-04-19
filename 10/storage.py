@@ -13,9 +13,12 @@ class Storage(object):
 
     def fetch(self, ingredients):
         for ingredient in ingredients:
-            storage_item = self.items.get(ingredient.name, None)
-            if storage_item:
-                storage_item.use(amount=ingredient.amount)
-            else:
+            try:
+                # look up the ingredient in the storage
+                storage_item = self.items[ingredient.name]
+            except KeyError:
+                # the ingredient isn't there
                 return False
+            else:
+                storage_item.use(amount=ingredient.amount)
         return True
