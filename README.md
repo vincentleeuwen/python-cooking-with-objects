@@ -18,7 +18,12 @@ Lets start by setting up the project:
 - create a new directory
 - go into the directory
 - create a .gitignore file with the following setup => https://github.com/github/gitignore/blob/master/Python.gitignore
-- initialize a new git repository `git init`
+- initialize a new git repository:
+```shell 
+> git init
+> git add .
+> git commit -m "Initial commit"
+```
 
 ## [01] As a guest. I want to be greeted by the waiter when I enter the pizzeria. So that I feel like I am welcome.
 
