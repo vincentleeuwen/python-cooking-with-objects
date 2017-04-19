@@ -25,6 +25,106 @@ Lets start by setting up the project:
 > git commit -m "Initial commit"
 ```
 
+## [00] As a developer. I want to have each project that I work on run in an isolated environment, have a user friendly REPL environment and manage dependencies to third party projects easily.
+
+Here we are going to lay the ground work for our project and make sure that the basic tools we are going to use are
+operating 'within normal parameters'.
+
+There is a couple of tools that we will use in almost all Python projects:
+
+#### Virtualenv
+
+This used to be a separate project, but is now part of Python itself. Virtualenv creates isolated Python environments. Within
+these environments you can safely install or remove packages without affecting any of your other projects. 
+
+#### Pip
+
+Pip is Python's package manager. Pip allows you to easily install third party libraries within your project's isolated virtualenv.
+Dependencies can be specified in a separate file (or multiple files) that you can manage within your source repository. Also
+(especially important for production environments) you can 'version pin' third party dependencies. This ensures that you only
+work with versions that are proven to work correctly in all of your deployment environments.
+
+#### IPython
+
+Python's shell is a so called REPL environment: a read-eval-print-loop. An interactive program that runs the code you
+enter line by line and evaluates the code after every line, printing any output if required. For the purpose of this
+ course this allows us to quickly try out code.
+ 
+IPython is an extension of the Python shell that adds things like tab-completion and reloading. 
+
+**Tasks:**
+
+1. create a virtual environment for our project
+2. add a specific version of IPython as a dependency of our project
+3. install dependencies using pip
+
+
+### 1. Create a virtual environment for our project
+
+- Run the following command in your shell:
+
+```shell
+> python3 -m venv .venv
+> source .venv/bin/activate
+```
+
+Your shell prompt should now look something like: `(venv) > `
+
+**Note:** The last line activates the virtual environment, this means that if you type `python` you will run the Python
+ command that is isolated to this virtual environment. You will have to activate the virtual env in every new shell that
+ you open with this same command. If you don't do that running the `python` command will use the system installed Python.
+ There are tools to automate this, but that is outside of the scope of this course.
+
+### 2. add a specific version of IPython as a dependency of our project
+
+- Create a requirements.txt file in your project folder, this file should contain the following:
+
+```
+ipython==5.3.0
+```
+
+**Note:** This pins version 5.3.0 of the IPython project as a dependency to our project. Even if newer versions are released
+of this project, if we reinstall the dependencies we will install version 5.3.0 until we explicitly upgrade this.
+
+### 3. install dependencies using pip
+
+- In your shell run the following command:
+
+```shell
+> pip install -r requirements.txt
+```
+
+This will instruct pip to install the dependencies specified in your `requirements.txt`. Besides the dependency that 
+**we** have explicitly specified you will also see that pip installs packages like `pygments` amongst others. These are
+dependencies that the IPython project needs in order to work correctly. 
+
+**Note:** When working with dependencies always only explicitly declare the dependencies and versions of them that
+**you** need. Leave it up to pip to resolve all other dependencies.
+
+### 4. Test if it all works
+
+- In your terminal type the following:
+
+```shell
+> ipython
+
+Python 3.6.0 (default, Dec 24 2016, 00:01:50)
+Type "copyright", "credits" or "license" for more information.
+
+IPython 5.3.0 -- An enhanced Interactive Python.
+?         -> Introduction and overview of IPython's features.
+%quickref -> Quick reference.
+help      -> Python's own help system.
+object?   -> Details about 'object', use 'object??' for extra details.
+
+In [1]:
+```
+
+You should see the above text and be able to run Python commands. Type: `print('Hello world')` and press enter to execute
+the first (obligatory Hello World) Python code of your project. To exit press `CTRL-D`
+
+Great! We are ready to get going!
+
 ## [01] As a guest. I want to be greeted by the waiter when I enter the pizzeria. So that I feel like I am welcome.
 
 **Tasks:**
