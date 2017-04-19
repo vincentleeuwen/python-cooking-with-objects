@@ -20,9 +20,9 @@ Lets start by setting up the project:
 - create a .gitignore file with the following setup => https://github.com/github/gitignore/blob/master/Python.gitignore
 - initialize a new git repository:
 ```shell 
-> git init
-> git add .
-> git commit -m "Initial commit"
+$ git init
+$ git add .
+$ git commit -m "Initial commit"
 ```
 
 ## [00] As a developer. I want to have each project that I work on run in an isolated environment, have a user friendly REPL environment and manage dependencies to third party projects easily.
@@ -64,8 +64,8 @@ IPython is an extension of the Python shell that adds things like tab-completion
 - Run the following command in your shell:
 
 ```shell
-> python3 -m venv .venv
-> source .venv/bin/activate
+$ python3 -m venv .venv
+$ source .venv/bin/activate
 ```
 
 Your shell prompt should now look something like: `(.venv) > `
@@ -91,7 +91,7 @@ of this project, if we reinstall the dependencies we will install version 5.3.0 
 - In your shell run the following command:
 
 ```shell
-> pip install -r requirements.txt
+$ pip install -r requirements.txt
 ```
 
 This will instruct pip to install the dependencies specified in your `requirements.txt`. Besides the dependency that 
@@ -106,7 +106,7 @@ dependencies that the IPython project needs in order to work correctly.
 - In your terminal start IPython:
 
 ```shell
-> ipython
+$ ipython
 ```
 
 You should now see something like:
