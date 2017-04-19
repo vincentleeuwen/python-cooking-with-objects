@@ -30,11 +30,11 @@ class Storage(object):
                 # to check if the available quantity is enough
                 checklist.append(storage_item.amount >= ingredient.amount)
 
-        ingredients_are_there = False not in checklist
-        if ingredients_are_there:
+        all_ingredients_are_there = False not in checklist
+        if all_ingredients_are_there:
             for ingredient in ingredients:
                 # we can index into our dictionary without precaution now because
                 # we know the ingredients are there
                 self.items[ingredient.name].use(amount=ingredient.amount)
 
-        return ingredients_are_there
+        return all_ingredients_are_there
