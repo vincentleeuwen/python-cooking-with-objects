@@ -68,7 +68,7 @@ IPython is an extension of the Python shell that adds things like tab-completion
 > source .venv/bin/activate
 ```
 
-Your shell prompt should now look something like: `(venv) > `
+Your shell prompt should now look something like: `(.venv) > `
 
 **Note:** The last line activates the virtual environment, this means that if you type `python` you will run the Python
  command that is isolated to this virtual environment. You will have to activate the virtual env in every new shell that
