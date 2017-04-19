@@ -11,6 +11,11 @@ class Storage(object):
             Ingredient.PEPPERONI: Ingredient(name=Ingredient.PEPPERONI, amount=0.3)
         }
 
+    # def check_storage(self, ingredient):
+    #     for storage_item in self.items:
+    #         if ingredient.name == storage_item.name:
+    #             return storage_item
+
     def fetch(self, ingredients):
         for ingredient in ingredients:
             try:
