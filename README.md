@@ -19,7 +19,7 @@ Lets start by setting up the project:
 - go into the directory
 - create a .gitignore file with the following setup => https://github.com/github/gitignore/blob/master/Python.gitignore
 - initialize a new git repository:
-```shell 
+```shell
 $ git init
 $ git add .
 $ git commit -m "Initial commit"
@@ -35,7 +35,7 @@ There is a couple of tools that we will use in almost all Python projects:
 #### Virtualenv
 
 This used to be a separate project, but is now part of Python itself. Virtualenv creates isolated Python environments. Within
-these environments you can safely install or remove packages without affecting any of your other projects. 
+these environments you can safely install or remove packages without affecting any of your other projects.
 
 #### Pip
 
@@ -49,8 +49,8 @@ work with versions that are proven to work correctly in all of your deployment e
 Python's shell is a so called REPL environment: a read-eval-print-loop. An interactive program that runs the code you
 enter line by line and evaluates the code after every line, printing any output if required. For the purpose of this
  course this allows us to quickly try out code.
- 
-IPython is an extension of the Python shell that adds things like tab-completion and reloading. 
+
+IPython is an extension of the Python shell that adds things like tab-completion and reloading.
 
 **Tasks:**
 
@@ -94,9 +94,9 @@ of this project, if we reinstall the dependencies we will install version 5.3.0 
 $ pip install -r requirements.txt
 ```
 
-This will instruct pip to install the dependencies specified in your `requirements.txt`. Besides the dependency that 
+This will instruct pip to install the dependencies specified in your `requirements.txt`. Besides the dependency that
 **we** have explicitly specified you will also see that pip installs packages like `pygments` amongst others. These are
-dependencies that the IPython project needs in order to work correctly. 
+dependencies that the IPython project needs in order to work correctly.
 
 **Note:** When working with dependencies always only explicitly declare the dependencies and versions of them that
 **you** need. Leave it up to pip to resolve all other dependencies.
@@ -1059,27 +1059,29 @@ def fetch(self, ingredients):
 
 ## [11] As storage. I would like to check for all my ingredients if inventory is sufficient, before informing the kitchen.
 
-So far the storage has only been checking whether an ingredient existed, rather than doing the full check if enough amounts of each ingredient are available. Let's fix this!
+So far the storage has only been checking whether an ingredient existed, rather than doing the full check if each ingredient is available before updating amounts. Let's fix this!
 
 ### 1. Track available ingredients in a checklist
 
 - create an empty checklist array (list in python).
 - while looping over your storage items, if an item is not there, append a boolean `False` to your checklist
-- if the ingredient is present, append `True` if inventory is sufficient, and `False` otherwise. Tip: in python, the comparison operator returns a Boolean!
-
-```
->>> 4 >= 2
-True
-```
+- if the ingredient is present, append `True`.
 
 ### 2. See if all ingredients are available, and update inventory accordingly
 
 - check if the boolean `False` appears in you checklist, and store this in variable `all_ingredients_are_there`
 - if all ingredients are there, loop over each ingredient once again, index into `self.items` and update the ingredient amount via `use()`
+- if all ingredients are there, and you've updated the storage items, `print()` the current inventory
+
+```python
+print("STORAGE: Inventory is now...")
+for ingredient in self.items.values():
+    print(ingredient.amount, ingredient.name)
+```
 
 ### 3. Test && Save
 
-- if you didn't change the inventory in your Storage initializer, you should now be able to order two pizza margheritas, but receive a "Sorry, this dish is not available" after that.
+- assuming you still have the same ingredients in your initializer, using the print statement, you can now observe how inventory changes when you order a pizza Margherita or pizza Pepperoni.
 
 
 ## [12] As developer. I would like code that is tested automatically.
@@ -1095,7 +1097,7 @@ verbose and sometimes inflexible. Therefore we will use the `pytest` testing fra
 writing tests in Python.
 
 ## 1. Install the `pytest` testing framework.
- 
+
 - Update your requirements.txt and add the following line to it:
 
 ```
@@ -1146,7 +1148,7 @@ def test_check():
     # Adding an item should have sum equal to the item
     c.add(pasta)
     assert c.calculate_sum() == 10
-    
+
     # Adding another item should have sum equal sum of both items
     c.add(pizza)
     assert c.calculate_sum() == 25
@@ -1170,4 +1172,3 @@ tests/test_check.py .
 
 We are now ready to reap the rewards of automated testing. Refactoring your code without the worries of possible breaking
 it!
-
