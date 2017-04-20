@@ -16,14 +16,13 @@ class Storage(object):
         for ingredient in ingredients:
             try:
                 # look up the ingredient in the storage
-                storage_item = self.items[ingredient.name]
+                self.items[ingredient.name]
             except KeyError:
-                # the ingredient isn't there
+                # the ingredient isn't there, append False
                 checklist.append(False)
             else:
-                # we now know it's there, so we can use the storage_item
-                # to check if the available quantity is enough
-                checklist.append(storage_item.amount >= ingredient.amount)
+                # its there, so append True to our checklist
+                checklist.append(True)
 
         all_ingredients_are_there = False not in checklist
         if all_ingredients_are_there:
@@ -31,5 +30,10 @@ class Storage(object):
                 # we can index into our dictionary without precaution now because
                 # we know the ingredients are there
                 self.items[ingredient.name].use(amount=ingredient.amount)
+
+            # print an overview of our inventory, so we can keep track
+            print("STORAGE: Inventory is now...")
+            for ingredient in self.items.values():
+                print(ingredient.amount, ingredient.name)
 
         return all_ingredients_are_there
