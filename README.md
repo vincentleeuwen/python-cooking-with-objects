@@ -1155,7 +1155,8 @@ collected 0 items
 from check import Check
 from dish import Dish
 
-def test_check():
+
+def test_calculate_sum():
     pasta = Dish('Pasta', [], 10)
     pizza = Dish('Pizza', [], 15)
     c = Check()
@@ -1170,7 +1171,6 @@ def test_check():
     # Adding another item should have sum equal sum of both items
     c.add(pizza)
     assert c.calculate_sum() == 25
-
 ```
 
 ## 3. Run the tests and enjoy the beauty of the color green:

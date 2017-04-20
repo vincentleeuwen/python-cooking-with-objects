@@ -1,7 +1,8 @@
 from check import Check
 from dish import Dish
 
-def test_check():
+
+def test_calculate_sum():
     pasta = Dish('Pasta', [], 10)
     pizza = Dish('Pizza', [], 15)
     c = Check()
