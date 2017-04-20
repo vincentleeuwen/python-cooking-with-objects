@@ -1239,3 +1239,248 @@ def test_fetch_multiple_items_should_work():
 
 We are now ready to reap the rewards of automated testing. Refactoring your code without the worries of possible breaking
 it!
+
+
+## [13] As developer. I would like to have a codebase that is readable and maintainable.
+
+In the previous parts we have emphasized implementing functionality for the end users of our system. We will now focus
+our efforts on the readability and maintainability of our code. For any serious software during the entire lifetime of 
+a project by far the most time is spent in reading, fixing and adapting existing code. Producing code that is 
+easy for both your colleague and future you to pick up on is thus vital. Python idioms have been specially crafted for 
+maximum expressive power with a minimum of code. Following these idioms is called 'writing code that is Pythonic' in 
+the world of Python. 
+
+Also a good ritual to maintain high quality is to refactor existing code. As your understanding of what you are working
+on decisions that you made earlier may currently not be the most effective solution. Or you find out that some code
+that looks almost the same is used in different parts of your codebase. Luckily during the last part we have invested
+some of our time to create tests which guarantee our code still respects the contract, even though the implementation
+changes.
+
+Let's refactor some existing code to make it more Pythonic!
+
+
+### 1. Let's refactor Check's calculate sum:
+
+- Open `check.py` the previous implementation we wrote looks like:
+
+```python
+class Check:
+    def __init__(self):
+        self.items = []
+
+    def add(self, item):
+        self.items.append(item)
+
+    def calculate_sum(self):
+        total_sum = 0
+        for dish in self.items:
+            total_sum += dish.price
+        return total_sum
+```
+
+- Run `pytest` to see that the tests are still working.
+
+- Now change the implementation of the `Check` class to:
+
+```python
+class Check:
+    def __init__(self):
+        self.items = []
+
+    def add(self, item):
+        self.items.append(item)
+        
+    def calculate_sum(self):
+        return sum([dish.price for dish in self.items])
+```
+
+That's nice, we have been able to reduce calculate_sum to a oneliner. But what is happening here? In Python the part
+within [] is called a list comprehension. Its a short form of building a new list out of an existing `Iterable` (an
+Iterable is a collection that you can iterate over) in this case what we are saying to Python is: for all dishes 
+in self.items create a new list contains dish.price. The `sum()` function is a function that takes an iterable and
+sums all its items.
+
+- Since we changed the implementation let's do a quick `pytest` run. Green? Awesome!
+
+### 2. Storage's fetch contains quite a few lines of code, let's refactor:
+
+- Open `storage.py` this used to be our implementation:
+
+```python
+from ingredient import Ingredient
+
+
+class Storage:
+
+    def __init__(self):
+        self.items = {
+            Ingredient.TOMATO: Ingredient(name=Ingredient.TOMATO, amount=8),
+            Ingredient.DOUGH: Ingredient(name=Ingredient.DOUGH, amount=2),
+            Ingredient.MOZZARELLA: Ingredient(name=Ingredient.MOZZARELLA, amount=1),
+            Ingredient.PEPPERONI: Ingredient(name=Ingredient.PEPPERONI, amount=0.3)
+        }
+
+    def fetch(self, ingredients):
+        checklist = []
+        for ingredient in ingredients:
+            try:
+                # look up the ingredient in the storage
+                self.items[ingredient.name]
+            except KeyError:
+                # the ingredient isn't there, append False
+                checklist.append(False)
+            else:
+                # its there, so append True to our checklist
+                checklist.append(True)
+
+        all_ingredients_are_there = False not in checklist
+        if all_ingredients_are_there:
+            for ingredient in ingredients:
+                # we can index into our dictionary without precaution now because
+                # we know the ingredients are there
+                self.items[ingredient.name].use(amount=ingredient.amount)
+
+            # print an overview of our inventory, so we can keep track
+            print("STORAGE: Inventory is now...")
+            for ingredient in self.items.values():
+                print(ingredient.amount, ingredient.name)
+
+        return all_ingredients_are_there
+```
+
+- Let's also optimize this implementation:
+
+```python
+class Storage:
+
+    def __init__(self):
+        self.items = {
+            Ingredient.TOMATO: Ingredient(name=Ingredient.TOMATO, amount=8),
+            Ingredient.DOUGH: Ingredient(name=Ingredient.DOUGH, amount=2),
+            Ingredient.MOZZARELLA: Ingredient(name=Ingredient.MOZZARELLA, amount=1),
+            Ingredient.PEPPERONI: Ingredient(name=Ingredient.PEPPERONI, amount=0.3)
+        }
+
+    def fetch(self, ingredients):
+        all_ingredients_are_there = all([i.name in self.items for i in ingredients])
+
+        if all_ingredients_are_there:
+            # List needs to be called to evaluate map here
+            list(map(lambda x: self.items[x.name].use(amount=x.amount), ingredients))
+
+            print('STORAGE: Inventory is now...')
+            print('\n'.join([f'{i.amount} {i.name}' for i in self.items.values()]))
+
+        return all_ingredients_are_there
+```
+
+We need to do a bit more explaining here, on the first line of the `fetch` method you see another list comprehension. It
+says the following: walk through all the given ingredients, use its name to check whether there is an entry in the
+dictionary. What remains is a list consisting of True and False values. The `all()` function here returns True only
+if all items in the list are True. Which is the case if all ingredients are there.
+
+Now reading further we see a line which uses a function called `map(function, iterable)`. Map applies a function to
+each item in the iterable. For example to calculate the square of 2, 3 and 4 you can do:
+
+```python
+def square(x):
+    return x * x
+
+assert list(map(square, [2, 3, 4])) == [4, 9, 16]
+```
+
+Since a lot of times we just want to use a short helper function that we don't really need outside of the scope of this
+specific `map()` call, we can use an anonymous function or `lambda`. To rewrite the simple example, this is equivalent:
+
+```python
+assert list(map(lambda x: x * x, [2, 3, 4])) == [4, 9, 16]
+```
+
+In our more complex case, in the `Storage` class, we use the `lambda` not to calculate the square of two numbers. But
+we just call another method namely `Ingredient.use()` to update all the amounts.
+
+The last line that needs some explaining is:
+
+```python
+print('\n'.join([f'{i.amount} {i.name}' for i in self.items.values()]))
+```
+
+Again a list comprehension. This loops through the values of the items dictionary in the Storage object. For each item
+a string is formatted containing the amount and name of the ingredient. This way of formatting strings is new in
+Python 3.6, see: https://www.python.org/dev/peps/pep-0498/ . Strangely enough it took Python a while to really find a
+nice syntax for this. What remains is a list of these strings.
+
+`join()` is a string method that you call on the string that will act as a separator and then as its argument you
+provide an iterable containing strings. This will join the individual string together with the original string. So 
+in a simpler example this works:
+
+```python
+assert ', '.join(['Roel', 'Vincent', 'Remco']) == 'Roel, Vincent, Remco'
+```
+
+- By now I guess you know what comes next: `pytest`
+
+All green? Great!
+
+
+### 3. Refactoring tests
+
+Tests are just code. And maintenance of them can be just as much of a headache as with 'regular' code. So let's also
+take a moment to rewrite some of our test code into a more clear format.
+
+- Open `tests/test_storage.py`, right now it should look like:
+
+```python
+from storage import Storage
+from ingredient import Ingredient
+
+
+def test_fetch_empty_ingredients_returns_true():
+    storage = Storage()
+    assert storage.fetch(ingredients=[]) is True
+
+
+def test_fetch_nonexistent_ingredient_returns_false():
+    storage = Storage()
+    assert storage.fetch(ingredients=[Ingredient(name='Non existent', amount=8)]) is False
+
+
+def test_fetch_existent_item_returns_true():
+    storage = Storage()
+    assert storage.fetch(ingredients=[Ingredient(name=Ingredient.TOMATO, amount=1)]) is True
+
+
+def test_fetch_multiple_items_should_work():
+    storage = Storage()
+    ingredients = [
+        Ingredient(name=Ingredient.TOMATO, amount=1),
+        Ingredient(name=Ingredient.DOUGH, amount=1)
+    ]
+    assert storage.fetch(ingredients) is True
+```
+
+- Rewrite the code to be the following:
+
+```python
+import pytest
+
+from storage import Storage
+from ingredient import Ingredient
+
+
+@pytest.mark.parametrize('ingredients, expected', [
+    [[], True],
+    [[Ingredient(name='Non existent', amount=8)], False],
+    [[Ingredient(name=Ingredient.TOMATO, amount=1)], True],
+    [[Ingredient(name=Ingredient.TOMATO, amount=1), Ingredient(name=Ingredient.DOUGH, amount=1)], True],
+])
+def test_fetch(ingredients, expected):
+    storage = Storage()
+    assert storage.fetch(ingredients) == expected
+```
+
+`pytest` calls this a parametrized test. It lets you define flexible define parameters that should be given to a
+function for every case. And then simple allows you to define the structure of the test once. Saving you a lot of 
+overhead for creating separate test functions. 
+
+- Do we have a green light?
