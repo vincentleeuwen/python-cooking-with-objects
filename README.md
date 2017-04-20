@@ -1177,6 +1177,16 @@ def test_calculate_sum():
     assert c.calculate_sum() == 25
 ```
 
+The test workhorse here is a statement called `assert` it tests that the given expression is `True`. It takes an
+optional secondary expression to output as a detailed message if the assertion doesn't hold. For example:
+
+```python
+>>> assert 1==0, 'No way!'
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+AssertionError: No way!
+```
+
 ## 3. Run the tests and enjoy the beauty of the color green:
 
 ```shell
