@@ -1114,6 +1114,10 @@ Python has long ago adopted the so called xUnit testing paradigm, the unit testi
 verbose and sometimes inflexible. Therefore we will use the `pytest` testing framework which is the new `standard` for
 writing tests in Python.
 
+In a test first mentality we would have started with writing tests first :) In practice we find that a less dogmatic 
+approach works best for us. Writing beautiful code is a craft not a procedure. Part of craftsmanship is guaranteeing the
+quality of what you make. How much confidence do you have in running your code in production?
+
 ## 1. Install the `pytest` testing framework.
 
 - Update your requirements.txt and add the following line to it:
