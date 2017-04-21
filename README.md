@@ -165,7 +165,39 @@ Great! We are ready to get going!
 
 ```python
 class Waiter:
+    pass
 ```
+
+A thing to note here is the statement `pass`. Python defines its scope using indentation. 
+PEP8: https://www.python.org/dev/peps/pep-0008/ which is the Python style guide defines indentation
+as 4 spaces. To say that a scope doesn't have any content yet `pass` is required. This would be equivalent
+to `public class Waiter{}` in Java.
+
+In Python 2 code you will always see classes defined as: `class Waiter(object)`. Very old versions of Python
+had something dubbed old-style classes. These classes did not have `object` as the root class. Don't ask! ;) 
+
+Python 3 completely removed that so `class Waiter` now inherits from `object`. Python does multiple inheritance
+if you want to for example define a RobotWaiter, that is a Robot which is also a Waiter you can write a class
+definition like:
+
+```python
+class Robot:
+    pass
+    
+class RobotWaiter(Robot, Waiter):
+    pass
+```
+
+This is of course quite a simple class hierarchy, having multiple classes inheriting from one another
+can quickly turn into something much more complex. What code will be run when? Python defines an explicit
+method resolution order (MRO) based on an algorithm called C3. For our RobotWaiter class the MRO is:
+
+```python
+>>> RobotWaiter.__mro__
+(<class '__main__.RobotWaiter'>, <class '__main__.Robot'>, <class '__main__.Waiter'>, <class 'object'>)
+```
+
+The class `RobotWaiter` will first 
 
 ### 2. Add a method to the Waiter to greet a guest
 
