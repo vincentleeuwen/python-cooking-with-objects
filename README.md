@@ -1,6 +1,6 @@
 #[Cooking 101](http://s2.quickmeme.com/img/3c/3ca2955b995c2b02bf1d821a8cf7066c5689eb3e2a4ebc7a80bfdf501290669c.jpg)
 
-We will learn today to cook with objects. We will start with creating a list of all objects of a pizzeria.
+We will learn today to cook with objects in Python 3.6. We will start with creating a list of all objects of a pizzeria.
 
 Because with objects oriented programming you want your code to work like a pizzeria.
 
@@ -11,6 +11,22 @@ Because with objects oriented programming you want your code to work like a pizz
 - Ingredients: Part of a recipe.
 - Stock: Amount of ingredients available
 - Storageroom: Holds the stock
+
+As explained on first impression the differences between Python 2 and 3 look minimal. So which version to choose?
+
+Python 3 was released already back in 2008. This was a big thing since your Python 2 code would not just run in
+Python 3 out of the box. And think not only of your own codebase, but all the other dependencies that you
+have on third party libraries! Are they updated already? You can imagine the pain of this for the Python
+community at large.
+
+But! Even though it is a pain now, that is not an argument to postpone and have lot's more pain later. So
+by Python's benevolent dictator for life it was so decreed to bite the bullet. Amongst things print became a 
+function instead of a language statement  (like assert), strings became unicode instead of ASCII and
+having to explicitly define a unicode string with `u"I'm a unicode string"` and the standard library was refactored:
+naming was normalized and parts of the library where restructured.
+
+It is now 2017. All libraries that you would use have been ported to Python 3. Hooray! For this project
+we will use Python 3.6 (the latest major release). 
 
 Lets start by setting up the project:
 
