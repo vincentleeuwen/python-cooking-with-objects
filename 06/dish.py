@@ -1,5 +1,5 @@
 
-class Dish(object):
+class Dish:
 
     def __init__(self, dish_name, ingredients):
         self.name = dish_name

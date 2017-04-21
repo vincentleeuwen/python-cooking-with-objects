@@ -2,7 +2,7 @@ from dish import Dish
 from ingredient import Ingredient
 
 
-class Menu(object):
+class Menu:
 
     def __init__(self):
         self.menu = []

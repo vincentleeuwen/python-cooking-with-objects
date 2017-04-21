@@ -164,7 +164,7 @@ Great! We are ready to get going!
 - Create a class in this new file. We create a class like:
 
 ```python
-class Waiter(object):
+class Waiter:
 ```
 
 ### 2. Add a method to the Waiter to greet a guest
@@ -173,7 +173,7 @@ class Waiter(object):
 - the method should print a greeting
 
 ```python
-class Waiter(object):
+class Waiter:
 
     def greet_guest(self):
         print("Good day. Welcome to our lovely little restaurant.")
@@ -329,7 +329,7 @@ A menu is a combination of dishes.
 - Create a class in this new file
 
 ```python
-class Menu(object):
+class Menu:
 ```
 
 ###2. create a class for dish
@@ -338,7 +338,7 @@ class Menu(object):
 - Create a class in this new file
 
 ```python
-class Dish(object):
+class Dish:
 ```
 
 
@@ -558,7 +558,7 @@ self.order_food(choice=int(input()))
 - Create a class in this new file
 
 ```python
-class Kitchen(object):
+class Kitchen:
 ```
 
 ### 5. Add a method to the kitchen so an order can be sent
@@ -669,7 +669,7 @@ def __init__(self, name, amount):
 ### 3. Add constants for the pizza ingredient names
 
 ```python
-class Ingredient(object):
+class Ingredient:
     TOMATO = "Tomato"
     DOUGH = "Dough"
     MOZZARELLA = "Mozzarella"
@@ -843,7 +843,7 @@ def fetch(self, ingredients):
 ```python
 from storage import Storage
 
-class Kitchen(object):
+class Kitchen:
 ```
 
 - add an initializer method to the kitchen and create an instance of storage
@@ -949,7 +949,7 @@ def fetch(self, ingredients):
 ### 3. Create a method to add items to the check
 
 ```python
-class Check(object):
+class Check:
 
     def __init__(self):
         self.items = []

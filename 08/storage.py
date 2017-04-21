@@ -1,7 +1,7 @@
 from ingredient import Ingredient
 
 
-class Storage(object):
+class Storage:
 
     def __init__(self):
         self.items = [

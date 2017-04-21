@@ -1,7 +1,7 @@
 from dish import Dish
 
 
-class Menu(object):
+class Menu:
 
     def __init__(self):
         self.menu = []

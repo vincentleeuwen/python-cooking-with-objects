@@ -1,5 +1,5 @@
 
-class Check(object):
+class Check:
 
     def __init__(self):
         self.items = []

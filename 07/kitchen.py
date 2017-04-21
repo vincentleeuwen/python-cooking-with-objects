@@ -1,7 +1,7 @@
 from storage import Storage
 
 
-class Kitchen(object):
+class Kitchen:
 
     def __init__(self):
         self.storage = Storage()

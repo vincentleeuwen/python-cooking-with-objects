@@ -1,7 +1,7 @@
 from check import Check
 
 
-class Waiter(object):
+class Waiter:
 
     def __init__(self, menu, kitchen):
         self.menu = menu

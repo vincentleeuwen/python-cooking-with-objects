@@ -1,5 +1,5 @@
 
-class Ingredient(object):
+class Ingredient:
     TOMATO = "Tomato"
     DOUGH = "Dough"
     MOZZARELLA = "Mozzarella"
