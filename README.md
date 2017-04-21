@@ -1,5 +1,33 @@
 #[Cooking 101](http://s2.quickmeme.com/img/3c/3ca2955b995c2b02bf1d821a8cf7066c5689eb3e2a4ebc7a80bfdf501290669c.jpg)
 
+## Legend
+
+Before we kick of a short explanation about notations used in during the course. In code examples you will see:
+
+#### Commands executed in your shell. Sometimes with example output
+
+```shell
+$ echo 'Hello world'
+Hello world
+```
+
+#### Python code executed in the Python interpreter, also sometimes with example output
+
+```python
+>>> print ('Hello universe')
+Hello universe
+```
+
+#### And Python code that you will edit as a file
+
+```python
+class Hello:
+    def world(self):
+        print('Allo allo')
+```
+
+## Introduction
+
 We will learn today to cook with objects in Python 3.6. We will start with creating a list of all objects of a pizzeria.
 
 Because with objects oriented programming you want your code to work like a pizzeria.
