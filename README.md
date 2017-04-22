@@ -1159,25 +1159,6 @@ for ingredient in self.items.values():
 
 - assuming you still have the same ingredients in your initializer, using the print statement, you can now observe how inventory changes when you order a pizza Margherita or pizza Pepperoni.
 
-### 4. BONUS: Storage Refactoring
-
-There are two things that we can refactor in our storage class:
-
-- During the first loop over our ingredients, we're merely checking whether each ingredient is there, rather than actually using it. as such, we don't really need to index into our dictionary to get the ingredient. Instead, we can just check whether the ingredient is in the `self.items` dictionary. you can do this by looking up the name of the ingredient in `self.items.keys()`, and append the boolean to our `checklist`.
-
-```python
-checklist.append(ingredient.name in self.items.keys())
-```
-
-- Rather then checking if the boolean `False` doesn't appear in our checklist, we can use the build in `all()` function, which returns `True` if all elements of the iterable are true (or if the iterable is empty).
-
-```python
-all_ingredients_are_there = all(checklist)
-```
-
-### 5. Test && Save
-
-
 ## [12] As developer. I would like code that is tested automatically.
 
 The saying goes: `untested code is broken code`. In our experience this holds for anything but the most trivial projects.
