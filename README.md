@@ -1814,34 +1814,24 @@ from ingredient import Ingredient
 class Storage:
     """Storage for ingredients used by Pizzeria 
     
-    This class holds all ingredients available to for use to create pizza's
-    in our restaurant. 
+    This class holds all ingredients available to create pizza's in our restaurant. On creation the Storage
+    starts with a fixed set of Ingredients:
 
+        8 Tomato
+        2 Dough
+        1 Mozzarella
+        0.3 Pepperoni
+        
     Attributes:
-        items (:obj:`list` of :obj:Ingredient): Items currently in storage
+        items (:obj:`dict` with :obj:Ingredient): Ingredients available in this storage
     """
-    def __init__(self, items=None):
-        """Create a new Storage
-            
-        If no ingredients are provided the Storage is initialize with a default set of Ingredients:
-    
-            8 Tomato
-            2 Dough
-            1 Mozzarella
-            0.3 Pepperoni
-            
-        Args:
-            items (:obj:`list` of :obj:Ingredient, optional): Ingredients available in this storage
-        """
-
-        # Specify a default set of Ingredients to work with if no Ingredients are given
-        if self.items is None:
-            self.items = {
-                Ingredient.TOMATO: Ingredient(name=Ingredient.TOMATO, amount=8),
-                Ingredient.DOUGH: Ingredient(name=Ingredient.DOUGH, amount=2),
-                Ingredient.MOZZARELLA: Ingredient(name=Ingredient.MOZZARELLA, amount=1),
-                Ingredient.PEPPERONI: Ingredient(name=Ingredient.PEPPERONI, amount=0.3)
-            }
+    def __init__(self):
+        self.items = {
+            Ingredient.TOMATO: Ingredient(name=Ingredient.TOMATO, amount=8),
+            Ingredient.DOUGH: Ingredient(name=Ingredient.DOUGH, amount=2),
+            Ingredient.MOZZARELLA: Ingredient(name=Ingredient.MOZZARELLA, amount=1),
+            Ingredient.PEPPERONI: Ingredient(name=Ingredient.PEPPERONI, amount=0.3)
+        }
 
     def fetch(self, ingredients):
         """Fetch items from storage
