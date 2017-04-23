@@ -1308,8 +1308,7 @@ We'll dive into solving these problems in the next chapter.
 We are now ready to reap the rewards of automated testing. Refactoring your code without the worries of possible breaking
 it!
 
-
-## [13] As developer. I would like to have a codebase that is readable and maintainable.
+## [14] As developer. I would like to have a codebase that is readable and maintainable.
 
 In the previous parts we have emphasized implementing functionality for the end users of our system. We will now focus
 our efforts on the readability and maintainability of our code. For any serious software during the entire lifetime of 
