@@ -1880,3 +1880,23 @@ Resources:
  * Docstring conventions: https://www.python.org/dev/peps/pep-0257/
  * Sphinx: http://www.sphinx-doc.org/en/stable/
  * Google docstring style guide: http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
+
+
+# The end!
+
+We have come to the end of the course! Well done! 
+
+We have bombarded you with a lot of knowledge, and had you type along with us. This allowed us to touch a lot of
+different subjects in a very short amount of time. Of course there is much more to know. But the small project that
+you have in your possession right now is a good reference of the different subjects that we touched. With this 
+knowledge you hold all the cards in your hand to pragmatically write high quality Pythonic code!
+ 
+## Bonus assignment
+
+This assignment is for those of you who have any time left over in the course or who are enthusiastic about 
+practicing lessons learned in this course at home.
+
+Build a `Supplier` class that can be used to top up the amounts of the different Ingredients in the `Storage` class.
+You can imagine that this supplier somehow needs to be called to top up stock when a new Pizza is ordered but there
+are not enough Ingredients available. You are free to implement this any way you see fit. Use the lessons learned in
+earlier parts. Try to write unit tests for the code you are building. Maybe even go test first here. 
