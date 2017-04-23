@@ -8,4 +8,7 @@ class Check:
         self.items.append(item)
 
     def calculate_sum(self):
-        return sum([dish.price for dish in self.items])
+        total_sum = 0
+        for dish in self.items:
+            total_sum += dish.price
+        return total_sum

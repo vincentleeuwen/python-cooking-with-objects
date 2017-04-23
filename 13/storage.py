@@ -12,13 +12,28 @@ class Storage:
         }
 
     def fetch(self, ingredients):
-        all_ingredients_are_there = all([i.name in self.items for i in ingredients])
+        checklist = []
+        for ingredient in ingredients:
+            try:
+                # look up the ingredient in the storage
+                self.items[ingredient.name]
+            except KeyError:
+                # the ingredient isn't there, append False
+                checklist.append(False)
+            else:
+                # its there, so append True to our checklist
+                checklist.append(True)
 
+        all_ingredients_are_there = False not in checklist
         if all_ingredients_are_there:
-            # List needs to be called to evaluate map here
-            list(map(lambda x: self.items[x.name].use(amount=x.amount), ingredients))
+            for ingredient in ingredients:
+                # we can index into our dictionary without precaution now because
+                # we know the ingredients are there
+                self.items[ingredient.name].use(amount=ingredient.amount)
 
-            print('STORAGE: Inventory is now...')
-            print('\n'.join([f'{i.amount} {i.name}' for i in self.items.values()]))
+            # print an overview of our inventory, so we can keep track
+            print("STORAGE: Inventory is now...")
+            for ingredient in self.items.values():
+                print(ingredient.amount, ingredient.name)
 
         return all_ingredients_are_there
