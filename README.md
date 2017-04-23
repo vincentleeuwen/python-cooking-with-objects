@@ -1305,6 +1305,133 @@ def test_fetch_too_many_items_returns_false():
 You will notice that this time something is not going entirely right. Or maybe we should turn that upside down and 
 notice that this test failure is indicating a problem in our code somewhere and giving us the opportunity to fix it.
 We'll dive into solving these problems in the next chapter.
+
+## [13] As developer. I would like to understand my code's behaviour and quickly locate problems.
+ 
+You probably recognize this moment: something that really shouldn't go wrong has gone wrong. This is impossible!
+You specifically designed the software in a way that this just shouldn't happen.
+
+In hindsight you just didn't have enough information yet about the behaviour of your code. Of course now that you have
+you see that this is a nasty, but possible edge case. The question is how to quickly get enough knowledge of this
+behaviour to fix problems?
+
+There are different strategies for doing this, amongst them:
+
+ * Spread out `print()` calls all over your code
+ * Using the python `logging` module to have your software log what it is doing
+ * Using a debugger
+
+Of which we think that using print is in general not a good strategy: you add code that you later need to remove. There
+is a risk of accidentally committing these print statements. And then you have removed the print statements because
+you fixed the problem, but later another problem emerges and again you have to sprinkle this print calls all over your
+code.
+
+The other two ways are good strategies for problem finding. Especially when used together. `logging` to have an overall
+idea of what your software is doing internally and the debugger to specifically dive into a problematic area and
+observe precisely what is happening under the hood. We are going to use both of these techniques to find the problem
+from the previous part:
+
+### 1. Logging
+
+When you use the Python `logging` module you can essentially do the same as with `print()` but with logging you can
+decide through configuration what information is being output by your program at any given time. Some information is 
+useful to always log: you can imagine if you have developed a program that looks for configuration in different
+locations: first in the users home dir: `~/.myconfig` and if that doesn't exist in `/etc/myconfig` that you always
+want to output which configuration is used explicitly. But in-depth information about how the configuration file is 
+being parsed is something you only need to see when problems arise.
+
+- Open `pizzeria.py` in your editor and add the logging statements:
+
+```python
+import logging
+
+from waiter import Waiter
+from menu import Menu
+from kitchen import Kitchen
+
+logging.basicConfig(level=logging.DEBUG)
+
+
+kitchen = Kitchen()
+menu = Menu()
+w = Waiter(menu=menu, kitchen=kitchen)
+w.greet_guest()
+
+logging.info('Restaurant now serving')
+while w.serving:
+    w.serve_guest()
+```
+
+- Open `ingredient.py` and also add logging:
+
+```python
+import logging
+
+
+class Ingredient:
+    TOMATO = "Tomato"
+    DOUGH = "Dough"
+    MOZZARELLA = "Mozzarella"
+    ANCHOVIES = "Anchovies"
+    PEPPERONI = "Pepperoni"
+
+    def __init__(self, name, amount):
+        self.name = name
+        self.amount = amount
+
+    def use(self, amount):
+        self.amount -= amount
+        logging.debug('Used %s %s', self.amount, self.name)
+```
+
+- Now run your code again, order a pizza, and amongst the output notice the following lines:
+
+```
+INFO:root:Restaurant now serving
+DEBUG:root:Used 5 Tomato
+DEBUG:root:Used 1.75 Dough
+DEBUG:root:Used 0.8 Mozzarella
+```
+
+- Open `pizzeria.py` again and change the logging config line to:
+
+```python
+logging.basicConfig(level=logging.INFO)
+```
+
+- Again order a pizza. But notice that this time only the INFO log is shown:
+
+```
+INFO:root:Restaurant now serving
+```
+
+We have effectively changed the logging level. The logging module knows five different logging levels, we list them
+in order of increasing severity:
+
+* DEBUG: Showing this tends to make you software very verbose, but helps in locating 
+         problems.
+* INFO: Information you can be interested in during normal execution. Less verbose then DEBUG.
+* WARNING: The software can operate normally but warns the user about something. 
+* ERROR: The software can continue operation but might not work as expected.
+* CRITICAL: Execution cannot continue.
+
+There are a lot more possibilities using Python's `logging` like creating hierarchies of loggers in large projects. And
+only having some of them output information. But this is outside of the scope of this course.
+
+**Bonus**: Can you adapt the logging configuration in such a way that no logging output shows up?
+
+Reference:
+
+ * Logging: https://docs.python.org/3/howto/logging.html
+
+
+
+
+
+
+
+ 
+
 We are now ready to reap the rewards of automated testing. Refactoring your code without the worries of possible breaking
 it!
 

@@ -1,3 +1,5 @@
+import logging
+
 
 class Ingredient:
     TOMATO = "Tomato"
@@ -12,3 +14,4 @@ class Ingredient:
 
     def use(self, amount):
         self.amount -= amount
+        logging.debug('Used %s %s', self.amount, self.name)
