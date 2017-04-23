@@ -1741,3 +1741,51 @@ function for every case. And then simple allows you to define the structure of t
 overhead for creating separate test functions. 
 
 - Do we have a green light?
+
+
+## [15] As developer. I would like to document my code for others to easily use it. Including my future self.
+
+As was the case with testing we have so far abstained a bit from really documenting our code. And as we have done
+with testing in the part before this, let's correct this by taking a few moments to document part of what we have build.
+
+Pragmatism has thought us that when writing new code it is wise to first allow an API to stabilize a little bit.
+If you fanatically start to document everything right from the start you might end up spending a lot of your energy
+in documenting things that you may throw away a couple of hours later. Our supply of energy is limited.
+
+The Python ecosystem has a very nice tool to help us writing documentation, it's called Sphinx. Sphinx is also used by
+Python itself for its documentation, see: https://docs.python.org/3/
+
+Python makes a difference between comments and so called docstrings. 
+
+## 1. Comments
+
+Comments you have already seen in the code from earlier parts:
+
+```python
+def fetch(self, ingredients):
+    # Check whether all required ingredients exist in storage and we have enough of them
+    all_ingredients_are_there = all(
+        [i.name in self.items and self.items[i.name].amount >= i.amount for i in ingredients])
+
+    if all_ingredients_are_there:
+        # List needs to be called to evaluate map here
+        list(map(lambda x: self.items[x.name].use(amount=x.amount), ingredients))
+```
+
+You write comments with the intention of explaining mostly your intentions as developer for someone that is changing
+the implementation of existing code. If at a later point I need to change the implementation of `fetch()` I quickly
+see what all_ingredients_are_there holds and why I use the `list()` call after the map. The rest of the code is
+self-explanatory.
+
+This self-explantory part is important. Python has been designed for easy readability (after you get used to its
+syntax of course ;) so try to keep comments to a minimum. Especially watch out for stating in a comment what the code
+itself already clearly shows, _**DON'T** do something like this_:
+
+```python
+# DON'T DO THIS! 
+
+# Loop through all the items and for each item print the amount and name
+for ingredient in self.items.values():
+    print(ingredient.amount, ingredient.name)
+```
+
