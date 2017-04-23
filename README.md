@@ -307,7 +307,7 @@ An instance is when we create an object from a class. You can create an object b
 ### 1. Create a method for the waiter to serve_guests.
 
 ```python
-  def serve_guest(self):
+    def serve_guest(self):
 ```
 
 ### 2. The serve_guests method should print a list of options for the guests
