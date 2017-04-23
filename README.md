@@ -1752,12 +1752,9 @@ Pragmatism has thought us that when writing new code it is wise to first allow a
 If you fanatically start to document everything right from the start you might end up spending a lot of your energy
 in documenting things that you may throw away a couple of hours later. Our supply of energy is limited.
 
-The Python ecosystem has a very nice tool to help us writing documentation, it's called Sphinx. Sphinx is also used by
-Python itself for its documentation, see: https://docs.python.org/3/
+For documentation purposes Python makes a difference between comments and so called docstrings: 
 
-Python makes a difference between comments and so called docstrings. 
-
-## 1. Comments
+### 1. Comments
 
 Comments you have already seen in the code from earlier parts:
 
@@ -1789,3 +1786,97 @@ for ingredient in self.items.values():
     print(ingredient.amount, ingredient.name)
 ```
 
+### 2. Docstrings
+
+Docstrings are there to document the _interface_ or _contract_ of your code. This is different then a comment. In this
+case I don't care about the implementation of a specific class or method. I just care about using it. So what do I need
+to know to make good use of your class or method?
+
+You can easily lookup docstrings when you are working in the IPython shell, to lookup documentation for example
+about `os.path.join`, do the following:
+
+```
+>>> import os.path
+>>> %pdoc os.path.join
+Class docstring:
+    Join two or more pathname components, inserting '/' as needed.
+    If any component is an absolute path, all previous path components
+    will be discarded.  An empty last part will result in a path that
+    ends with a separator.
+```
+
+- We are going to document our `Storage` class, open `storage.py` and add the documentation:
+
+```python
+from ingredient import Ingredient
+
+
+class Storage:
+    """Storage for ingredients used by Pizzeria 
+    
+    This class holds all ingredients available to for use to create pizza's
+    in our restaurant. 
+
+    Attributes:
+        items (:obj:`list` of :obj:Ingredient): Items currently in storage
+    """
+    def __init__(self, items=None):
+        """Create a new Storage
+            
+        If no ingredients are provided the Storage is initialize with a default set of Ingredients:
+    
+            8 Tomato
+            2 Dough
+            1 Mozzarella
+            0.3 Pepperoni
+            
+        Args:
+            items (:obj:`list` of :obj:Ingredient, optional): Ingredients available in this storage
+        """
+
+        # Specify a default set of Ingredients to work with if no Ingredients are given
+        if self.items is None:
+            self.items = {
+                Ingredient.TOMATO: Ingredient(name=Ingredient.TOMATO, amount=8),
+                Ingredient.DOUGH: Ingredient(name=Ingredient.DOUGH, amount=2),
+                Ingredient.MOZZARELLA: Ingredient(name=Ingredient.MOZZARELLA, amount=1),
+                Ingredient.PEPPERONI: Ingredient(name=Ingredient.PEPPERONI, amount=0.3)
+            }
+
+    def fetch(self, ingredients):
+        """Fetch items from storage
+            
+        This method checks to see whether the enough required Ingredients are present in
+        the Storage and updates the amounts accordingly.
+            
+        Args:
+            items (:obj:`list` of :obj:Ingredient): Items to be fetched
+            
+        Returns:
+            True if successful, False otherwise.
+        """
+        # Check whether all required ingredients exist in storage and we have enough of them
+        all_ingredients_are_there = all(
+            [i.name in self.items and self.items[i.name].amount >= i.amount for i in ingredients])
+
+        if all_ingredients_are_there:
+            # List needs to be called to evaluate map here
+            list(map(lambda x: self.items[x.name].use(amount=x.amount), ingredients))
+
+            print('STORAGE: Inventory is now...')
+            print('\n'.join([f'{i.amount} {i.name}' for i in self.items.values()]))
+
+        return all_ingredients_are_there
+```
+
+- **BONUS**: document the `Waiter` class yourself
+
+The Python ecosystem has a very nice tool to help us with documentation, it's called Sphinx. Sphinx was originally
+developed for documenting Python itself: https://docs.python.org/3/. Sphinx uses can  automatically extract these
+docstrings to build a documenting without code that is easy to use as a reference. In these docstrings you
+can even write code as examples that can be automatically tested! 
+
+Resources:
+ * Docstring conventions: https://www.python.org/dev/peps/pep-0257/
+ * Sphinx: http://www.sphinx-doc.org/en/stable/
+ * Google docstring style guide: http://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html
