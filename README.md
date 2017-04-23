@@ -1180,6 +1180,16 @@ for ingredient in self.items.values():
 
 - assuming you still have the same ingredients in your initializer, using the print statement, you can now observe how inventory changes when you order a pizza Margherita or pizza Pepperoni.
 
+**Note**: Sometimes in the inventory you can see amounts like `0.6000000000000001 Mozzarella`. This because we are
+using float number and any number that can't be built from exact powers of two can't be represented exactly as a
+floating point number; it needs to be approximated. Sometimes the closest approximation will be 
+less than the actual number. To be exact you can use the type Decimal:
+ 
+```python
+from decimal import Decimal
+Decimal('0.6')
+```
+
 ## [12] As developer. I would like code that is tested automatically.
 
 The saying goes: `untested code is broken code`. In our experience this holds for anything but the most trivial projects.
