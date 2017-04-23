@@ -1497,23 +1497,12 @@ run `pytest -s` again to start over. Here is a legend of the basic instructions:
 
 **BONUS**: Now that you now better what `fetch()` fix the failing test. Remove the breakpoint after you are done fixing.
 
-
-
-
-
- 
-
-We are now ready to reap the rewards of automated testing. Refactoring your code without the worries of possible breaking
-it!
-
 ## [14] As developer. I would like to have a codebase that is readable and maintainable.
 
-In the previous parts we have emphasized implementing functionality for the end users of our system. We will now focus
-our efforts on the readability and maintainability of our code. For any serious software during the entire lifetime of 
-a project by far the most time is spent in reading, fixing and adapting existing code. Producing code that is 
-easy for both your colleague and future you to pick up on is thus vital. Python idioms have been specially crafted for 
-maximum expressive power with a minimum of code. Following these idioms is called 'writing code that is Pythonic' in 
-the world of Python. 
+For any serious software during the entire lifetime of a project by far the most time is spent in reading, fixing and
+adapting existing code. Producing code that is easy for both your colleague and future you to pick up on is thus vital.
+Python idioms have been specially crafted for maximum expressive power with a minimum of code. Following these idioms
+is called 'writing code that is Pythonic' in the world of Python. 
 
 Also a good ritual to maintain high quality is to refactor existing code. As your understanding of what you are working
 on decisions that you made earlier may currently not be the most effective solution. Or you find out that some code
@@ -1627,7 +1616,8 @@ class Storage:
         }
 
     def fetch(self, ingredients):
-        all_ingredients_are_there = all([i.name in self.items for i in ingredients])
+        all_ingredients_are_there = all(
+            [i.name in self.items and self.items[i.name].amount >= i.amount for i in ingredients])
 
         if all_ingredients_are_there:
             # List needs to be called to evaluate map here
@@ -1642,7 +1632,7 @@ class Storage:
 We need to do a bit more explaining here, on the first line of the `fetch` method you see another list comprehension. It
 says the following: walk through all the given ingredients, use its name to check whether there is an entry in the
 dictionary. What remains is a list consisting of True and False values. The `all()` function here returns True only
-if all items in the list are True. Which is the case if all ingredients are there.
+if all items in the list are True. Which is the case if all ingredients are there and the amount suffices.
 
 Now reading further we see a line which uses a function called `map(function, iterable)`. Map applies a function to
 each item in the iterable. For example to calculate the square of 2, 3 and 4 you can do:
@@ -1738,6 +1728,7 @@ from ingredient import Ingredient
     [[Ingredient(name='Non existent', amount=8)], False],
     [[Ingredient(name=Ingredient.TOMATO, amount=1)], True],
     [[Ingredient(name=Ingredient.TOMATO, amount=1), Ingredient(name=Ingredient.DOUGH, amount=1)], True],
+    [[Ingredient(name=Ingredient.TOMATO, amount=90)], False],
 ])
 def test_fetch(ingredients, expected):
     storage = Storage()
