@@ -2,10 +2,10 @@ from ingredient import Ingredient
 
 
 class Storage:
-    """Storage for ingredients used by Pizzeria 
+    """Storage for ingredients used by Pizzeria
 
-    This class holds all ingredients available to create pizza's in our restaurant. On creation the Storage
-    starts with a fixed set of Ingredients:
+    This class holds all ingredients available to create pizza's in our restaurant.
+    On creation the Storage starts with a fixed set of Ingredients:
 
         8 Tomato
         2 Dough
@@ -25,13 +25,13 @@ class Storage:
 
     def fetch(self, ingredients):
         """Fetch items from storage
-            
+
         This method checks to see whether the enough required Ingredients are present in
         the Storage and updates the amounts accordingly.
-            
+
         Args:
             items (:obj:`list` of :obj:Ingredient): Items to be fetched
-            
+
         Returns:
             True if successful, False otherwise.
         """

@@ -8,7 +8,8 @@ from ingredient import Ingredient
     [[], True],
     [[Ingredient(name='Non existent', amount=8)], False],
     [[Ingredient(name=Ingredient.TOMATO, amount=1)], True],
-    [[Ingredient(name=Ingredient.TOMATO, amount=1), Ingredient(name=Ingredient.DOUGH, amount=1)], True],
+    [[Ingredient(name=Ingredient.TOMATO, amount=1),
+      Ingredient(name=Ingredient.DOUGH, amount=1)], True],
     [[Ingredient(name=Ingredient.TOMATO, amount=90)], False],
 ])
 def test_fetch(ingredients, expected):

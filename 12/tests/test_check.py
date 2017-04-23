@@ -13,8 +13,7 @@ def test_calculate_sum():
     # Adding an item should have sum equal to the item
     c.add(pasta)
     assert c.calculate_sum() == 10
-    
+
     # Adding another item should have sum equal sum of both items
     c.add(pizza)
     assert c.calculate_sum() == 25
-

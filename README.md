@@ -184,12 +184,13 @@ the first (obligatory Hello World) Python code of your project. To exit press `C
 Also test that `flake8` works:
 
 ```shell
-$ flake8
+$ flake8 --max-line-length=100
 ```
 
 Since there are currently no Python files, at this moment flake8 outputs nothing. But while you are working on your
 code it is good to run `flake8` in between. A lot of editors and IDE's automate all of this, so you don't have to
-remember to run these tools manually.
+remember to run these tools manually. We instruct flake8 to allow a line length of 100, by default PEP8 (the Python
+styleguide) only allows 79 characters per line, which is a bit arcane for modern computers.
 
 Allright! We are ready to get going with the actual project!
 
