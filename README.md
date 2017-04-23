@@ -116,7 +116,7 @@ This is a so called linter. It does two things:
 - Run the following command in your shell:
 
 ```shell
-$ python3 -m venv .venv
+$ python -m venv .venv
 $ source .venv/bin/activate
 ```
 
