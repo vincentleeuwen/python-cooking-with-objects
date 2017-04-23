@@ -1530,7 +1530,8 @@ run `pytest -s` again to start over. Here is a legend of the basic instructions:
 * `h(elp)`: Prints help info
 * `enter`: just execute the last instruction again
 
-**BONUS**: Now that you know better what `fetch()` fix the failing test. Remove the breakpoint after you are done fixing.
+**BONUS**: Now that you know better what `fetch()` does, fix the failing test. Remove the breakpoint
+after you are done fixing.
 
 ## [14] As developer. I would like to have a codebase that is readable and maintainable.
 
