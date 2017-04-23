@@ -444,7 +444,7 @@ def __init__(self):
 def __init__(self, dish_name):
 ```
 
-- Assign the argument of the constructor to an instance variable `@name`
+- Assign the argument of the constructor to an instance variable `self.name`
 
 ```python
 def __init__(self, dish_name)
