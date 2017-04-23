@@ -1424,7 +1424,78 @@ Reference:
 
  * Logging: https://docs.python.org/3/howto/logging.html
 
+### 2. Debugging
 
+To locate problems precisely we need to sometimes execute part of our program line by line and see what effect each
+of these lines of execution have on the state of our program. That is what a debugger is for and we will now learn
+how to debug in Python to solve the problem our test found in the previous part. 
+
+Integrated Development Environments like [PyCharm](https://www.jetbrains.com/pycharm/features/tools.html) feature 
+extensive debuggers that integrate very nicely with your normal development workflow. In this chapter we will start
+by using a more basic variant. We have used IPython to enhance the Python shell. IPython also features a more user
+friendly debugger which we will use in this part:
+
+- Install the IPython debugger by adding the following line to `requirements.txt`:
+
+```
+ipdb==0.10.3
+```
+
+- Then run `pip install -r requirements.txt`
+
+- Something went wrong in one of our test cases. We don't want to use the debugger to step through _all_ of our code
+because most of it is working correctly. Instead we want to set a breakpoint just before something fails. Set this
+breakpoint by opening `test_storage.py` and changing `test_fetch_too_many_items_returns_false`:
+
+```python
+def test_fetch_too_many_items_returns_false():
+    storage = Storage()
+    ingredients = [
+        Ingredient(name=Ingredient.TOMATO, amount=90),
+    ]
+    import ipdb; ipdb.set_trace()  # Breakpoint
+    assert storage.fetch(ingredients) is False
+```
+
+Now run `pytest -s` (**NOTE**: -s is needed here) and after a few tests have run you will drop into the debugger:
+
+```python
+.> /Users/remco/Projects/cours/advanced-python/python-cooking-with-objects/13/tests/test_storage.py(35)test_fetch_too_many_items_returns_false()
+     33     ]
+     34     import ipdb; ipdb.set_trace()
+---> 35     assert storage.fetch(ingredients) is False
+
+ipdb>
+```
+
+The debugger is a shell like IPython is, but one specifically made for debugging. Our code has stopped executing just
+before `storage.fetch()` is called. We want to step into this method since this is where the error is occuring so 
+type `s` and press enter:
+
+```python
+ipdb> s
+--Call--
+> /Users/remco/Projects/cours/advanced-python/python-cooking-with-objects/13/storage.py(14)fetch()
+     13
+---> 14     def fetch(self, ingredients):
+     15         checklist = []
+```
+
+The debugger has moved our point of execution to the file `storage.py` line 14. This is where `fetch` is defined. From
+here on take some time to step through this method to see what is happening on each line. Do this a couple of times
+to get a good feeling for how to work with the debugger. At any time you can type `CTR-D` to exit the debugger and just
+run `pytest -s` again to start over. Here is a legend of the basic instructions:
+
+* `n(ext)`: Continue execution until the next line in the current function is reached or it returns.
+* `s(tep)`: Execute the current line, stop at the first possible occasion (either in a function that is called or in
+            the current function).
+* `c(ontinue)`: resume execution normally, possible until a next breakpoint that you defined is hit.
+* `ll(ist)`: Print lines of code at current point of execution.
+* `p(rint) expression`: Print the value of the expression.
+* `h(elp)`: Prints help info
+* `enter`: just execute the last instruction again
+
+**BONUS**: Now that you now better what `fetch()` fix the failing test. Remove the breakpoint after you are done fixing.
 
 
 
