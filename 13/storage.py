@@ -21,8 +21,11 @@ class Storage:
                 # the ingredient isn't there, append False
                 checklist.append(False)
             else:
-                # its there, so append True to our checklist
-                checklist.append(True)
+                # its there, append True when there is enough stock otherwise False
+                if self.items[ingredient.name].amount >= ingredient.amount:
+                    checklist.append(True)
+                else:
+                    checklist.append(False)
 
         all_ingredients_are_there = False not in checklist
         if all_ingredients_are_there:
