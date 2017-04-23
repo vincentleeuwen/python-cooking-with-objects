@@ -1300,6 +1300,9 @@ def test_fetch_too_many_items_returns_false():
     assert storage.fetch(ingredients) is False
 ```
 
+Note: that we use the word `is` here instead of `==`. `is` will return True if two variables point to the same object,
+ `==` if the objects referred to by the variables are equal.
+
 - Run the tests again with `pytest`
 
 You will notice that this time something is not going entirely right. Or maybe we should turn that upside down and 
