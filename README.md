@@ -1290,10 +1290,21 @@ def test_fetch_multiple_items_should_work():
         Ingredient(name=Ingredient.DOUGH, amount=1)
     ]
     assert storage.fetch(ingredients) is True
+    
+    
+def test_fetch_too_many_items_returns_false():
+    storage = Storage()
+    ingredients = [
+        Ingredient(name=Ingredient.TOMATO, amount=90),
+    ]
+    assert storage.fetch(ingredients) is False
 ```
 
 - Run the tests again with `pytest`
 
+You will notice that this time something is not going entirely right. Or maybe we should turn that upside down and 
+notice that this test failure is indicating a problem in our code somewhere and giving us the opportunity to fix it.
+We'll dive into solving these problems in the next chapter.
 We are now ready to reap the rewards of automated testing. Refactoring your code without the worries of possible breaking
 it!
 

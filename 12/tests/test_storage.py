@@ -24,3 +24,11 @@ def test_fetch_multiple_items_should_work():
         Ingredient(name=Ingredient.DOUGH, amount=1)
     ]
     assert storage.fetch(ingredients) is True
+
+
+def test_fetch_too_many_items_returns_false():
+    storage = Storage()
+    ingredients = [
+        Ingredient(name=Ingredient.TOMATO, amount=90),
+    ]
+    assert storage.fetch(ingredients) is False
