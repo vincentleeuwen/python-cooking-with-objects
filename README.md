@@ -1199,7 +1199,7 @@ testing your code? Are you testing all the edge cases? Besides writing automated
 in turn means maintaining a larger codebase.
 
 Python has long ago adopted the so called xUnit testing paradigm, the unit testing work originally introduced in Java
-(and Smalltalk) by Kent Beck. Over the years of Python pragmatism has thought us that the xUnit way of working is quite
+(and Smalltalk) by Kent Beck. Over the years of Python pragmatism has taught us that the xUnit way of working is quite
 verbose and sometimes inflexible. Therefore we will use the `pytest` testing framework which is the new `standard` for
 writing tests in Python.
 
@@ -1784,7 +1784,7 @@ overhead for creating separate test functions.
 As was the case with testing we have so far abstained a bit from really documenting our code. And as we have done
 with testing in the part before this, let's correct this by taking a few moments to document part of what we have build.
 
-Pragmatism has thought us that when writing new code it is wise to first allow an API to stabilize a little bit.
+Pragmatism has taught us that when writing new code it is wise to first allow an API to stabilize a little bit.
 If you fanatically start to document everything right from the start you might end up spending a lot of your energy
 in documenting things that you may throw away a couple of hours later. Our supply of energy is limited.
 
