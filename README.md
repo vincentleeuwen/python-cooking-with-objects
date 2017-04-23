@@ -1616,6 +1616,7 @@ class Storage:
         }
 
     def fetch(self, ingredients):
+        # Check whether all required ingredients exist in storage and we have enough of them
         all_ingredients_are_there = all(
             [i.name in self.items and self.items[i.name].amount >= i.amount for i in ingredients])
 
