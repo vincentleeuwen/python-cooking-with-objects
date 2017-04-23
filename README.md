@@ -96,11 +96,19 @@ enter line by line and evaluates the code after every line, printing any output 
 
 IPython is an extension of the Python shell that adds things like tab-completion and reloading.
 
+#### flake8
+
+This is a so called linter. It does two things:
+
+    1. It checks the syntax of your code to see whether you made any errors
+    2. It checks the formatting of your code if it adheres to Python's PEP8 styleguide
+
 **Tasks:**
 
 1. create a virtual environment for our project
 2. add a specific version of IPython as a dependency of our project
 3. install dependencies using pip
+4. test if it all works
 
 
 ### 1. Create a virtual environment for our project
@@ -125,10 +133,12 @@ Your shell prompt should now look something like: `(.venv) > `
 
 ```
 ipython==5.3.0
+flake8==3.3.0
 ```
 
-**Note:** This pins version 5.3.0 of the IPython project as a dependency to our project. Even if newer versions are released
-of this project, if we reinstall the dependencies we will install version 5.3.0 until we explicitly upgrade this.
+**Note:** This pins IPython version 5.3.0 and flake8 version 3.3.0 as a dependency to our project. Even if newer
+versions are released of these projects, when we reinstall the dependencies we will install these versions until we 
+explicitly upgrade decide to upgrade them.
 
 ### 3. install dependencies using pip
 
@@ -171,7 +181,17 @@ In [1]:
 You should see the above text and be able to run Python commands. Type: `print('Hello world')` and press enter to execute
 the first (obligatory Hello World) Python code of your project. To exit press `CTRL-D`
 
-Great! We are ready to get going!
+Also test that `flake8` works:
+
+```shell
+$ flake8
+```
+
+Since there are currently no Python files, at this moment flake8 outputs nothing. But while you are working on your
+code it is good to run `flake8` in between. A lot of editors and IDE's automate all of this, so you don't have to
+remember to run these tools manually.
+
+Allright! We are ready to get going with the actual project!
 
 ## [01] As a guest. I want to be greeted by the waiter when I enter the pizzeria. So that I feel like I am welcome.
 
@@ -267,6 +287,7 @@ An instance is when we create an object from a class. You can create an object b
 ### 8. Save your progress
 
 - Open the terminal
+- Now is a good time to run `flake8` and see whether you adhere to Python's style guide.
 - Add all the files in your project to git `git add .`
 - Commit the files to your local git `git commit -m 'Added greetings'`
 
