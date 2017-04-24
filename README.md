@@ -1153,6 +1153,8 @@ def fetch(self, ingredients):
     return True
 ```
 
+For more information on syntax errors and exception handling, see: https://docs.python.org/3/tutorial/errors.html
+
 ### 3. Test && Save
 
 ## [11] As storage. I would like to check for all my ingredients if inventory is sufficient, before informing the kitchen.
